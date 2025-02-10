@@ -142,7 +142,6 @@ section{
   @media screen and (max-width:425px){
     .menu{
         font-size:20px;
-        height:20px;
         line-height:60px;
     }
     #header{
@@ -170,9 +169,11 @@ section{
     }
     #side{
         height:800px;
+        margin-top:-20px;
     }
     #contents{
         font-size:xx-small;
+        margin-top:-20px;
         height:800px;
     }
   }
