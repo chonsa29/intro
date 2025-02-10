@@ -140,6 +140,14 @@ section{
 
   /*media query*/
   @media screen and (max-width:425px){
+    .menu{
+        font-size:20px;
+        height:20px;
+        line-height:60px;
+    }
+    #header{
+        height: 60px;
+    }
     #namecard{
         h2{
             font-size:10px;
@@ -159,5 +167,12 @@ section{
     }
     #day{
         font-size:9px;
+    }
+    #side{
+        height:800px;
+    }
+    #contents{
+        font-size:xx-small;
+        height:800px;
     }
   }
