@@ -110,6 +110,10 @@ td{
     width:95%;
 }
 /*others*/
+#music{
+    margin-top:50px;
+    float:right;
+}
 .subtitle{
     margin-left:50px;
 }
