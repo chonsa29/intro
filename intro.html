@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
-	<title>온라인 프로필</title>
-	<meta charset="utf-8">
+    <title>온라인 프로필</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="main.css" />
 </head>
 
-<body>
+<body onload="getTime()">
     <div id="container">
         <!--헤더-->
         <div id="header">
@@ -48,19 +49,24 @@
         <!-- 사이드바 -->
         <div id="side">
             <div id="namecard">
-                <a href="media/1.png"><img src="media/1.png" alt="" width="200px" id="side_img"></a>
-                <h1>C</h1><h2>HON</h2> <h1>S</h1><h2>ANGWOOK</h2>    
+                <a href="media/1.png"><img src="media/1.png" alt="" id="side_img"></a>
+                <h2><span>C</span>HON <span>S</span>ANGWOOK</h2>
                 <p style="color:rgb(189, 189, 189);margin-bottom:50px;">프로그래밍 재밌다</p>
             </div>
             <div id="detail">
                 <p>Incheon, Korea</p>
-                <p>chonsa29@gmail.com</p>                                 
+                <p>chonsa29@gmail.com</p>
             </div>
             <div id="sns">
                 <h2>SNS</h2>
-                <h3><a href="media/3.jpg">클릭!@!@!@!</a></h3>
-            </div>           
+                <h3><a href="media/3.jpg">클릭!@!@!</a></h3>
+            </div>
+            <div id="day">
+                <h2 id="date"></h2>
+                <h2 id="time"></h2>
+            </div>
         </div>
+
         <div id="contents">
             <section>
                 <h2 class="subtitle">자기소개</h2>
@@ -75,22 +81,22 @@
                         <ul>
                             <li>HTML/CSS/JAVASCRIPT </li>
                             <li>웹 페이지 못 만든다 </li>
-                            <li>다 못함...</li> 
+                            <li>다 못함...</li>
                         </ul>
                     </li>
                     <li>백엔드
                         <ul>
                             <li>자바 조금함 </li>
                             <li>오라클도 조금함</li>
-                        </ul>                        
+                        </ul>
                     </li>
-                </ul>             
+                </ul>
             </section>
 
             <!-- 숙련도 -->
             <section>
                 <h2 class="subtitle">보유 기술</h2>
-                <li style="list-style: none;"> 
+                <li style="list-style: none;">
                     <ul style="margin-left:30px;list-style:none;">
                         <li>자바 <br>
                             <progress class="progress" id="progress" value="10" min="0" max="100"></progress>
@@ -104,7 +110,7 @@
                         <li>C++ <br>
                             <progress class="progress" id="progress" value="50" min="0" max="100"></progress>
                         </li>
-                    </ul>                        
+                    </ul>
                 </li>
             </section>
 
@@ -112,36 +118,56 @@
             <section>
                 <h2 class="subtitle">Education</h2>
                 <table style="margin-left:50px; margin-bottom:10px;">
-                  <caption>학력 사항</caption>
-                  <thead>
-                      <tr>
-                          <th>출신학교</th>
-                          <th>전공</th>
-                          <th>기간</th>
-                          <th>구분</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>인하대학교</td>
-                          <td>컴퓨터공학과</td>
-                          <td>2019.3 ~ </td>
-                          <td>휴학</td>
-                      </tr>
-                      <tr>
-                          <td>Korean International School Philippines</td>
-                          <td> 이과 </td>
-                          <td>2017.3 ~ 2019.2</td>
-                          <td>졸업</td>
-                      </tr>
-                  </tbody>
+                    <caption>학력 사항</caption>
+                    <thead>
+                        <tr>
+                            <th>출신학교</th>
+                            <th>전공</th>
+                            <th>기간</th>
+                            <th>구분</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>인하대학교</td>
+                            <td>컴퓨터공학과</td>
+                            <td>2019.3 ~ </td>
+                            <td>휴학</td>
+                        </tr>
+                        <tr>
+                            <td>Korean International School Philippines</td>
+                            <td> 이과 </td>
+                            <td>2017.3 ~ 2019.2</td>
+                            <td>졸업</td>
+                        </tr>
+                    </tbody>
                 </table>
             </section>
-        </div>        
+        </div>
     </div>
 </body>
+
 </html>
 
 <script>
+    //Date
+    function getTime(){
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = ('0' + today.getMonth() + 1).slice(-2);
+        let date = ('0' + today.getDate()).slice(-2);
+        let day = ['일', '월', '화', '수', '목', '금', '토'];
+        let datestr = year + '-' + month + '-' + date + "(" + day[(today.getDay())] + "요일)";
 
+        let hours = ('0'+today.getHours()).slice(-2);
+        let mins = ('0'+today.getMinutes()).slice(-2);
+        let secs = ('0'+today.getSeconds()).slice(-2);
+        let timestr = hours + ":" + mins + ":" + secs;
+        console.log(date);
+
+        document.querySelector("#date").innerHTML = datestr;
+        document.querySelector("#time").innerHTML = timestr;
+
+        setTimeout(getTime,1000);
+    }
 </script>
