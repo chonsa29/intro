@@ -26,35 +26,43 @@
 	<div id="b"></div>
 
 
-	<div id="container">
+	<div id="page1" class="section">
 		<div id="day">
 			<h2 id="date"></h2>
 			<h2 id="time"></h2>
 		</div>
 		<nav>
-			<ul style="list-style-type: none;">
+			<ul>
 				<li>
-					<a href="#">
+					<a href="#page1">
 						<span class="material-symbols-outlined" style="font-size:40px;">
 							radio_button_checked
 						</span>
-						<span class="tooltip-text">Home</span>
+						<span class="nav-text">HOME</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="#page2">
 						<span class="material-symbols-outlined" style="font-size:40px;">
 							radio_button_checked
 						</span>
-						<span class="tooltip-text">About</span>
+						<span class="nav-text">ABOUT</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="#page3">
 						<span class="material-symbols-outlined" style="font-size:40px;">
 							radio_button_checked
 						</span>
-						<span class="tooltip-text">Contact</span>
+						<span class="nav-text">CONTACT</span>
+					</a>
+				</li>
+				<li>
+					<a href="#page4">
+						<span class="material-symbols-outlined" style="font-size:40px;">
+							radio_button_checked
+						</span>
+						<span class="nav-text">ETC</span>
 					</a>
 				</li>
 			</ul>
@@ -64,7 +72,7 @@
 		</div>
 	</div>
 
-	<div id="container2">
+	<div id="page2" class="section">
 		<div id="main">
 			<div id="icon">
 				<img src="media/icon.png" width="200">
@@ -76,6 +84,13 @@
 			</div>
 		</div>
 	</div>
+	<div id="page3" class="section">
+
+	</div>
+	<div id="page4" class="section">
+
+
+	</div>
 </body>
 
 </html>
@@ -83,7 +98,7 @@
 
 <script>
 	//벚꽃
-	var sakura = new Sakura('#container');
+	var sakura = new Sakura('#page1');
 
 	//시간
 	function getTime() {
@@ -106,7 +121,10 @@
 	}
 
 	//로딩화면면
-	let container = document.querySelector("#container");
+	let page1 = document.querySelector("#page1");
+	let page2 = document.querySelector("#page2");
+	let page3 = document.querySelector("#page3");
+	let page4 = document.querySelector("#page4");
 	let a = document.querySelector("#a");
 	let b = document.querySelector("#b");
 	let day = document.querySelector("#day");
@@ -116,6 +134,15 @@
 
 		setTimeout(function () {
 			loader.style.display = "none";
+			page1.style.display = "block";
+			page2.style.display = "block";
+			page3.style.display = "block";
+			page4.style.display = "block";
+			page1.classList.add("show");
+			page2.classList.add("show");
+			page3.classList.add("show");
+			page4.classList.add("show");
+			
 			loading1();
 			loading2();
 		}, 1500);
