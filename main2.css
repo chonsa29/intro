@@ -197,15 +197,57 @@ nav li:hover .nav-text {
 }
 
 /*2페이지*/
-#icon{
-    float:left;
-    margin-top:10%;
-    margin-left:42%;
+
+/*사이드바*/
+#sidebar{
+    position:relative;
+    width:20%;
+    height:70%;
+    top:18%;
+    left:5%;
+    text-align:center;
+    padding: 2% 1%;
+    border-radius:10px;
+    background-color:white;
 }
-#intro{
-    width:500px;
-    height:500px;
-    float:left;
-    margin-top:10%;
-    margin-left:33%;
+#icon{
+    margin-left:17%;
+    background-image:url("media/icon.png");
+    width:190px;
+    height:190px;
+    background-size:cover;
+}
+#icon:hover{
+    background-image:url("media/1.png");
+}
+#name{
+    margin-top:5%;
+    font-size:25px;
+    font-weight:bold;
+}
+
+/*내용*/
+#content{
+    position:absolute;
+    top:18%;
+    left:30%;
+    width:60%;
+    height:70%;
+    padding: 2% 1%;
+    text-align:center;
+    border-radius:10px;
+    background-color:white;
+}
+#introTitle{
+    display:inline-block;
+    margin-left:20%;
+    margin-right:20%;
+}
+.button1:hover{
+    cursor:pointer;
+}
+#pageNo{
+    position:absolute;
+    bottom:2%;
+    left:48%;
 }

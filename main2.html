@@ -73,14 +73,29 @@
 	</div>
 
 	<div id="page2" class="section">
-		<div id="main">
+		<div id="sidebar">
 			<div id="icon">
-				<img src="media/icon.png" width="200">
 			</div>
+			<div id="name">
+				CHON SANGWOOK
+			</div>
+			<p>프로그래밍 재밌다</p>
+		</div>
+		<div id="content">
 			<div id="intro">
-				저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어
-				소프트웨어 개발을 공부하게 되었습니다. 비록 실무 경험은 부족하지만,
-				꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.
+				<span class="material-symbols-outlined button1" onclick="prev()">
+					arrow_back_ios
+				</span>
+				<h1 id="introTitle">자기소개</h1>
+				<span class="material-symbols-outlined button1" onclick="next()">
+					arrow_forward_ios
+				</span>
+				<p>저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어
+					소프트웨어 개발을 공부하게 되었습니다. 비록 실무 경험은 부족하지만,
+					꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.</p>
+			</div>
+			<div id="pageNo">
+				1
 			</div>
 		</div>
 	</div>
@@ -142,7 +157,7 @@
 			page2.classList.add("show");
 			page3.classList.add("show");
 			page4.classList.add("show");
-			
+
 			loading1();
 			loading2();
 		}, 1500);
@@ -160,5 +175,18 @@
 		setTimeout(function () {
 			b.style.display = "none";
 		}, 1800)
+	}
+
+	function prev(){
+
+	}
+
+	function next(){
+		let title = document.querySelector("#introTitle");
+		let pageNo = document.querySelector("#pageNo");
+
+		console.log(pageNo);
+		pageNo.innerHTML = (parseInt(pageNo.innerHTML)+1);
+		title.innerHTML = "asdfasdf";
 	}
 </script>
