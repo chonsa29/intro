@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="main2.css" />
+	<link rel="stylesheet" href="https://jhammann.github.io/sakura/dist/sakura.css">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<script src="https://jhammann.github.io/sakura/dist/sakura.js"></script>
+	<title>Document</title>
+</head>
+
+<body onload="loading()">
+	<div class="loader">
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	<div id="a"></div>
+	<div id="b"></div>
+
+
+	<div id="container">
+		<div id="day">
+			<h2 id="date"></h2>
+			<h2 id="time"></h2>
+		</div>
+		<nav>
+			<ul style="list-style-type: none;">
+				<li>
+					<a href="#">
+						<span class="material-symbols-outlined" style="font-size:40px;">
+							radio_button_checked
+						</span>
+						<span class="tooltip-text">Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="material-symbols-outlined" style="font-size:40px;">
+							radio_button_checked
+						</span>
+						<span class="tooltip-text">About</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="material-symbols-outlined" style="font-size:40px;">
+							radio_button_checked
+						</span>
+						<span class="tooltip-text">Contact</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="overlay">
+			배움에 열정을 갖고 성장하는 개발자 천상욱입니다.
+		</div>
+	</div>
+
+	<div id="container2">
+		<div id="main">
+			<div id="icon">
+				<img src="media/icon.png" width="200">
+			</div>
+			<div id="intro">
+				저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어
+				소프트웨어 개발을 공부하게 되었습니다. 비록 실무 경험은 부족하지만,
+				꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script src="path/to/sakura.min.js"></script>
+
+<script>
+	//벚꽃
+	var sakura = new Sakura('#container');
+
+	//시간
+	function getTime() {
+		let today = new Date();
+		let year = today.getFullYear();
+		let month = ('0' + today.getMonth() + 1).slice(-2);
+		let date = ('0' + today.getDate()).slice(-2);
+		let day = ['일', '월', '화', '수', '목', '금', '토'];
+		let datestr = year + '-' + month + '-' + date + "(" + day[(today.getDay())] + "요일)";
+
+		let hours = ('0' + today.getHours()).slice(-2);
+		let mins = ('0' + today.getMinutes()).slice(-2);
+		let secs = ('0' + today.getSeconds()).slice(-2);
+		let timestr = "현재시간: " + hours + ":" + mins + ":" + secs;
+
+		document.querySelector("#date").innerHTML = datestr;
+		document.querySelector("#time").innerHTML = timestr;
+
+		setTimeout(getTime, 1000);
+	}
+
+	//로딩화면면
+	let container = document.querySelector("#container");
+	let a = document.querySelector("#a");
+	let b = document.querySelector("#b");
+	let day = document.querySelector("#day");
+
+	function loading() {
+		let loader = document.querySelector(".loader");
+
+		setTimeout(function () {
+			loader.style.display = "none";
+			loading1();
+			loading2();
+		}, 1500);
+	}
+	function loading1() {
+		a.style.transform = "translateX(-120%)";
+		setTimeout(function () {
+			a.style.display = "none";
+			getTime();
+		}, 1800)
+	}
+
+	function loading2() {
+		b.style.transform = "translateX(120%)";
+		setTimeout(function () {
+			b.style.display = "none";
+		}, 1800)
+	}
+</script>

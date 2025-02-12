@@ -1,0 +1,193 @@
+
+#container2{
+    width:100%;
+    height:900px;
+    display:block;
+    background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%); 
+}
+
+body {
+    margin: 0;
+}
+
+#container {
+    display: none;
+}
+
+#a {
+    background-color: #eee;
+    width: 50%;
+    height: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 3s;
+    z-index: 1;
+}
+
+#b {
+    background-color: #eee;
+    width: 50%;
+    height: 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 3s;
+    z-index: 1;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(243, 52, 52);
+    border-radius: 50%;
+    animation: orbit 1.5s linear infinite;
+    opacity: 0;
+    z-index: 2;
+}
+
+/* 8개의 원 배치 */
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.dot:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.dot:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.dot:nth-child(6) {
+    animation-delay: 1s;
+}
+
+.dot:nth-child(7) {
+    animation-delay: 1.2s;
+}
+
+.dot:nth-child(8) {
+    animation-delay: 1.4s;
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(40px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(40px);
+        opacity: 0;
+    }
+}
+
+#container,
+.overlay:before {
+    background: url("/media/wallpaper.jpg") no-repeat;
+    background-size: cover;
+}
+
+
+#container {
+    height:900px;
+    display: block;
+}
+
+.overlay {
+    height: 100px;
+    line-height:100px;
+    margin: 0 auto;
+    max-width: 850px;
+    overflow: hidden;
+    padding: 50px;
+    color: white;
+    position: relative;
+    top:25%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px rgb(255, 20, 157);
+    z-index: 0;
+
+    &:before {
+        content: '';
+        filter: blur(20px);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+}
+
+/*네비게이션*/
+nav {
+    position: fixed;
+    top:25%;
+    right: 50px;
+    color: pink;
+    font-size: 50px;
+    cursor: pointer;
+}
+.tooltip-text {
+    display: none;
+    float:right;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:30px;
+    background-color:black;
+    color:purple;
+    border-radius:6px;
+
+}
+a:visited{
+    text-decoration:none;
+    color:pink;
+}
+li:hover{
+    .tooltip-text{
+        display:block;
+    }
+}
+/*시간*/
+#day {
+    color: white;
+    position: fixed;
+    z-index: 3;
+    top: 10px;
+    left: 30px;
+    font-size: 18px;
+    text-shadow: 0px 0px 5px black;
+}
+
+/*2페이지*/
+#icon{
+    float:left;
+    margin-top:10%;
+    margin-left:42%;
+}
+#intro{
+    width:500px;
+    height:500px;
+    float:left;
+    margin-top:10%;
+    margin-left:33%;
+}

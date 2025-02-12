@@ -13,10 +13,10 @@
 
         #title {
             position:absolute;
-            top:45%;
-            left:25%;
+            top:42%;
+            left:15%;
             color:white;
-            font-size:xx-large;
+            font-size:40px;
         }
         #title h1{
             height:50px;
@@ -30,7 +30,7 @@
             top:30%;
             right:-10px;
             width:4px;
-            height:50%;
+            height:60%;
             background-color:white;
         }
         #title h1.active::after{
@@ -38,7 +38,7 @@
         }
         #main{
             position:absolute;
-            top:62%;
+            top:64%;
             left:44%;
             margin:auto;
             width:10%;
@@ -79,7 +79,7 @@
     <div id="title">
         <h1> </h1>
     </div>
-    <div id="main"><a href="intro.html">Main</a></div>
+    <div id="main"><a href="main2.html">Main</a></div>
 </body>
 
 </html>
@@ -97,12 +97,12 @@
             i=0;
         }
 	}
-	setInterval(typing,250);
+	setInterval(typing,200);
 
     const target = document.querySelector("#title h1");
 
     function blink(){
         target.classList.toggle("active");
     }
-    setInterval(blink,250);
+    setInterval(blink,200);
 </script>
