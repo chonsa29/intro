@@ -1,133 +1,218 @@
-body{
-    background:url("media/background.png") no-repeat fixed;
-    background-size:100% 30%, 100% 100%; 
-    background-size:cover;
-    margin:0;
+body {
+    background: url("media/background.png") no-repeat fixed;
+    background-size: 100% 30%, 100% 100%;
+    background-size: cover;
+    margin: 0;
+    z-index:3;
 }
-
+#container{
+    display:none;
+}
+#a {
+    background-color: #eee;
+    width: 50%;
+    height: 1000px;
+    position:absolute;
+    left:0;
+    top:0;
+    transition: 3s;
+    z-index:3;
+}
+#b{
+    background-color:#eee;
+    width:50%;
+    height:1000px;
+    position:absolute;
+    right:0;
+    top:0;
+    transition:3s;
+    z-index:3;
+}
 /*table*/
 table {
-  width:70%; 
-  border:1px solid #222; 
-  border-collapse: collapse; 
+    width: 70%;
+    border: 1px solid #222;
+    border-collapse: collapse;
 }
+
 thead {
-  background:#55e0ff;  
+    background: #55e0ff;
 }
-th, td {
-  border:1px solid #ccc; 
-  padding:5px;  
-  font-size:1em;
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 1em;
 }
-td{
-    background-color:#eaeaea;
+
+td {
+    background-color: #eaeaea;
+}
+
+/*loading*/
+.loading-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    position: fixed;
+    z-index:5;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #3498db;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;
+    z-index:5;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /*header*/
-#header{
-    width:100%;
-    height:80px;
-    position:fixed;
-    z-index:1;
+#header {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    z-index: 1;
 }
-#header::after{
-    width:100%;
-    height:100%;
-    content:"";
-    background:url("media/header.jpg") no-repeat fixed;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:-1;
-    opacity:0.3;
+
+#header::after {
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url("media/header.jpg") no-repeat fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5;
 }
-.menu{
-    width:25%;
-    color:rgb(238, 238, 238);
-    float:left;
-    text-align:center;
-    line-height:80px;
-    font-size:30px;
-    font-weight:bold;
+
+.menu {
+    width: 25%;
+    color: rgb(238, 238, 238);
+    float: left;
+    text-align: center;
+    line-height: 80px;
+    font-size: 30px;
+    font-weight: bold;
 }
-.lists{
+
+.lists {
     background-color: rgb(115, 125, 133);
     display: none;
     text-decoration: none;
     color: black;
-    position:relative;
-    box-shadow:1px 1px 5px black;
+    position: relative;
+    box-shadow: 1px 1px 5px black;
 }
-.menu:hover{
-    cursor:pointer;
-    box-shadow:0px 0px 4px white;
-    .lists{
-        display:block;
+
+.menu:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 4px white;
+
+    .lists {
+        display: block;
     }
 }
-.lists:hover{
-    color:white;
+
+.lists:hover {
+    color: white;
     background-color: black;
 }
-.menu a:visited{
-    color:white;
+
+.menu a:visited {
+    color: white;
 }
-.menu a{
-    color:white;
-    text-decoration:none;
+
+.menu a {
+    color: white;
+    text-decoration: none;
 }
 
 /*sidebar*/
-#side{
+#side {
     width: 20%;
-    height:1200px;
-    margin-top:80px;
-    background-color:rgba(102, 102, 102, 0.5);
-    float:left;
+    height: 1200px;
+    margin-top: 80px;
+    background-color: rgba(102, 102, 102, 0.5);
+    float: left;
 }
-#contents{
-    margin-top:80px;
-    width:80%;
-    height:1200px;
-    background-color:rgba(255, 255, 255, 0.5);
-    float:left;
+
+#contents {
+    margin-top: 80px;
+    width: 80%;
+    height: 1200px;
+    background-color: rgba(255, 255, 255, 0.5);
+    float: left;
 }
-#namecard,#detail,#sns, #day, #visits{
+
+#namecard,
+#detail,
+#sns,
+#day,
+#visits {
     margin: 15% 10%;
 }
-#namecard span{
-    font-size:xx-large;
+
+#namecard span {
+    font-size: xx-large;
 }
-#side{
-    h1,h2{
-        color:white;
-        display:inline-block;
+
+#side {
+
+    h1,
+    h2 {
+        color: white;
+        display: inline-block;
     }
-    img{
-        display:block;
+
+    img {
+        display: block;
     }
 }
-#side_img{
-    width:95%;
+
+#side_img {
+    width: 95%;
 }
+
 /*others*/
-#music{
-    margin-top:50px;
-    margin-right:50px;
-    float:right;
+#music {
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
 }
-.subtitle{
-    margin-left:50px;
+
+.subtitle {
+    margin-left: 50px;
 }
-section{
+
+section {
     width: 90%;
-    border-bottom:1px dotted black;
-    margin:auto;
-}   
-#progress{
+    border-bottom: 1px dotted black;
+    margin: auto;
+}
+
+#progress {
     margin-bottom: 30px;
     appearance: none;
 }
+
 #progress::-webkit-progress-bar {
     background: #f0f0f0;
     border-radius: 12px;
@@ -135,50 +220,59 @@ section{
     height: 20px;
     width: 200px;
     overflow: hidden;
-  }
+}
 
-  #progress::-webkit-progress-value {
+#progress::-webkit-progress-value {
     background: hwb(202 49% 0%);
     height: 28px;
     width: 48px;
-  }
+}
 
-  /* media query */
-  @media screen and (max-width:425px){
-    .menu{
-        font-size:20px;
-        line-height:60px;
+/* media query */
+@media screen and (max-width:425px) {
+    .menu {
+        font-size: 20px;
+        line-height: 60px;
     }
-    #header{
+
+    #header {
         height: 60px;
     }
-    #namecard{
-        h2{
-            font-size:10px;
+
+    #namecard {
+        h2 {
+            font-size: 10px;
         }
-        span{
-            font-size:12px;
+
+        span {
+            font-size: 12px;
         }
-        p{
-            font-size:8px;
+
+        p {
+            font-size: 8px;
         }
     }
-    #detail{
-        font-size:9px;
+
+    #detail {
+        font-size: 9px;
     }
-    #sns{
-        font-size:10px;
+
+    #sns {
+        font-size: 10px;
     }
-    #day{
-        font-size:9px;
+
+    #day {
+        font-size: 9px;
     }
-    #side{
-        height:800px;
-        margin-top:-20px;
+
+    #side {
+        height: 800px;
+        margin-top: -20px;
     }
-    #contents{
-        font-size:xx-small;
-        margin-top:-20px;
-        height:800px;
+
+    #contents {
+        font-size: xx-small;
+        margin-top: -20px;
+        height: 800px;
     }
-  }
+}

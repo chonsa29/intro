@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
 
 <head>
@@ -8,189 +7,109 @@
 	<title>Document</title>
 	<style>
 		body {
-			background: #000;
-			overflow: hidden;
+			background: url("media/background.png") no-repeat fixed;
+			background-size: 100% 30%, 100% 100%;
+			background-size: cover;
+			margin: 0;
 		}
 
-		canvas {
-			bottom: 0;
+		#container {
+			display: none;
+		}
+
+		#a {
+			background-color: #222;
+			width: 50%;
+			height: 1000px;
+			position: absolute;
 			left: 0;
+			top: 0;
+			transition: 3s;
+			z-index:-1;
+		}
+
+		#b {
+			background-color: #222;
+			width: 50%;
+			height: 1000px;
 			position: absolute;
 			right: 0;
 			top: 0;
+			transition: 3s;
+			z-index:-1;
 		}
 
-		#c1 {
-			opacity: 0;
+		.loading-wrap {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(255, 0, 0, 0.133);
+			position: fixed;
+			z-index:1;
 		}
 
-		#c2 {
-			background: #000;
+		.loading-spinner {
+			width: 40px;
+			height: 40px;
+			border: 5px solid #3498db;
+			border-top: 5px solid transparent;
+			border-radius: 50%;
+			animation: rotate 1s linear infinite;
+		}
+
+		@keyframes rotate {
+			from {
+				transform: rotate(0deg);
+			}
+
+			to {
+				transform: rotate(360deg);
+			}
 		}
 	</style>
 </head>
 
-<body>
-	<canvas id="c1"></canvas>
-	<canvas id="c2"></canvas>
-</body>
-
-</html>
-
-<script>
-	//배경화면
-	var c1 = document.getElementById('c1'),
-		ctx1 = c1.getContext('2d'),
-		c2 = document.getElementById('c2'),
-		ctx2 = c2.getContext('2d'),
-		twopi = Math.PI * 2,
-		parts = [],
-		sizeBase,
-		cw,
-		opt,
-		hue,
-		count;
-
-	function rand(min, max) {
-		return Math.random() * (max - min) + min;
-	}
-
-	function hsla(h, s, l, a) {
-		return 'hsla(' + h + ',' + s + '%,' + l + '%,' + a + ')';
-	}
-
-	function create() {
-		sizeBase = cw + ch;
-		count = Math.floor(sizeBase * 0.3),
-			hue = rand(0, 360),
-			opt = {
-				radiusMin: 1,
-				radiusMax: sizeBase * 0.04,
-				blurMin: 10,
-				blurMax: sizeBase * 0.04,
-				hueMin: hue,
-				hueMax: hue + 100,
-				saturationMin: 10,
-				saturationMax: 70,
-				lightnessMin: 20,
-				lightnessMax: 50,
-				alphaMin: 0.1,
-				alphaMax: 0.5
-			}
-		ctx1.clearRect(0, 0, cw, ch);
-		ctx1.globalCompositeOperation = 'lighter';
-		while (count--) {
-			var radius = rand(opt.radiusMin, opt.radiusMax),
-				blur = rand(opt.blurMin, opt.blurMax),
-				x = rand(0, cw),
-				y = rand(0, ch),
-				hue = rand(opt.hueMin, opt.hueMax),
-				saturation = rand(opt.saturationMin, opt.saturationMax),
-				lightness = rand(opt.lightnessMin, opt.lightnessMax),
-				alpha = rand(opt.alphaMin, opt.alphaMax);
-
-			ctx1.shadowColor = hsla(hue, saturation, lightness, alpha);
-			ctx1.shadowBlur = blur;
-			ctx1.beginPath();
-			ctx1.arc(x, y, radius, 0, twopi);
-			ctx1.closePath();
-			ctx1.fill();
-		}
-
-		parts.length = 0;
-		for (var i = 0; i < Math.floor((cw + ch) * 0.03); i++) {
-			parts.push({
-				radius: rand(1, sizeBase * 0.03),
-				x: rand(0, cw),
-				y: rand(0, ch),
-				angle: rand(0, twopi),
-				vel: rand(0.1, 0.5),
-				tick: rand(0, 10000)
-			});
-		}
-	}
-
-	function init() {
-		resize();
-		create();
-		loop();
-	}
-
-	function loop() {
-		requestAnimationFrame(loop);
-
-		ctx2.clearRect(0, 0, cw, ch);
-		ctx2.globalCompositeOperation = 'source-over';
-		ctx2.shadowBlur = 0;
-		ctx2.drawImage(c1, 0, 0);
-		ctx2.globalCompositeOperation = 'lighter';
-
-		var i = parts.length;
-		ctx2.shadowBlur = 15;
-		ctx2.shadowColor = '#fff';
-		while (i--) {
-			var part = parts[i];
-
-			part.x += Math.cos(part.angle) * part.vel;
-			part.y += Math.sin(part.angle) * part.vel;
-			part.angle += rand(-0.05, 0.05);
-
-			ctx2.beginPath();
-			ctx2.arc(part.x, part.y, part.radius, 0, twopi);
-			ctx2.fillStyle = hsla(0, 0, 100, 0.075 + Math.cos(part.tick * 0.02) * 0.05);
-			ctx2.fill();
-
-			if (part.x - part.radius > cw) { part.x = -part.radius }
-			if (part.x + part.radius < 0) { part.x = cw + part.radius }
-			if (part.y - part.radius > ch) { part.y = -part.radius }
-			if (part.y + part.radius < 0) { part.y = ch + part.radius }
-
-			part.tick++;
-		}
-	}
-
-	function resize() {
-		cw = c1.width = c2.width = window.innerWidth,
-			ch = c1.height = c2.height = window.innerHeight;
-		create();
-	}
-
-	function click() {
-		create()
-	}
-
-	window.addEventListener('resize', resize);
-	window.addEventListener('click', click);
-
-	init();
-
-=======
-<html>
-
-<head>
-	<meta charset="UTF-8">
-	<title>What time is it now</title>
-</head>
-
-<body>
-	<div class="text_box">
-		<span class="text"></span>
+<body onload="loading()">
+	<div class="loading-wrap">
+		<div class="loading-spinner"></div>
+		<p>페이지가 로딩 중입니다...</p>
 	</div>
+	<div id="a"></div>
+	<div id="b"></div>
 </body>
 
 </html>
-<script>
-	const content = "Hi I'm Sangwook"
-	const text = document.querySelector(".text");
-	let i = 0;
 
-	function typing(){
-		if (i< content.length){
-			let txt = content.charAt(i);
-			text.innerHTML += txt;
-			i++;
-		}
+<script>
+	let container = document.querySelector("#container");
+	let a = document.querySelector("#a");
+	let b = document.querySelector("#b");
+
+	function loading() {
+		let loadingwrap = document.querySelector(".loading-wrap");
+		
+		setTimeout(function () {
+			loadingwrap.style.display = "none";
+			loading1();
+			loading2();
+		}, 2000);
 	}
-	setInterval(typing,200);
->>>>>>> 22772627ed33c4174fe63926ceed0f3526168b24
+	function loading1() {
+		a.style.transform = "translateX(-100%)";
+		a.style.opacity = 0;
+		setTimeout(function () {
+			a.style.display = "none";
+		}, 3000)
+	}
+
+	function loading2() {
+		b.style.transform = "translateX(100%)";
+		b.style.opacity = 0;
+		setTimeout(function () {
+			b.style.display = "none";
+		}, 3000)
+	}
 </script>

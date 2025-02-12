@@ -12,14 +12,14 @@
         }
 
         #title {
-            margin-top: 18%;
-            text-align: center;
-            color: white;
+            position:absolute;
+            top:45%;
+            left:25%;
+            color:white;
             font-size:xx-large;
         }
         #title h1{
-            position:relative;
-            display:inline-block;
+            height:50px;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             text-shadow:0px 0px 10px rgb(131, 131, 131);
         }
@@ -27,30 +27,35 @@
             content:"";
             display:block;
             position:absolute;
-            top:0;
+            top:30%;
             right:-10px;
             width:4px;
-            height:100%;
+            height:50%;
             background-color:white;
         }
         #title h1.active::after{
             display:none;
         }
         #main{
+            position:absolute;
+            top:62%;
+            left:44%;
             margin:auto;
             width:10%;
             height:70px;
             background:rgba(255, 62, 204, 0.9);
-            border:7px solid rgb(56, 0, 113);
+            border:6px solid rgb(56, 0, 113);
             text-align: center;
             border-radius: 10%;
             line-height:70px;
             box-shadow: 0px 0px 5px black;
+            font-size:x-large;
         }
         a{
             text-decoration:none;
             color:rgb(35, 21, 21);
             font-weight:bold;
+            font-size:xx-large;
         }
         #header{
             text-align:right;
@@ -73,8 +78,8 @@
     </div>
     <div id="title">
         <h1> </h1>
-        <div id="main"><a href="intro.html">Main</a></div>
     </div>
+    <div id="main"><a href="intro.html">Main</a></div>
 </body>
 
 </html>

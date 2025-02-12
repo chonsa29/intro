@@ -7,9 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="main.css" />
+
 </head>
 
-<body onload="getTime()">
+<body onload="getTime(), loading()">
+    <!--로딩-->
+    <div class="loading-wrap">
+        <div class="loading-spinner"></div>
+        <p>페이지가 로딩 중입니다...</p>
+    </div>
+    <div id="a"></div>
+    <div id="b"></div>
+
     <div id="container">
         <!--헤더-->
         <div id="header">
@@ -139,16 +148,19 @@
                 </table>
             </section>
             <div id="music">
-                <audio controls><source src = "media/bgm.mp3"></audio>
+                <audio controls>
+                    <source src="media/bgm.mp3">
+                </audio>
             </div>
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
     //Date
-    function getTime(){
+    function getTime() {
         let today = new Date();
         let year = today.getFullYear();
         let month = ('0' + today.getMonth() + 1).slice(-2);
@@ -156,15 +168,43 @@
         let day = ['일', '월', '화', '수', '목', '금', '토'];
         let datestr = year + '-' + month + '-' + date + "(" + day[(today.getDay())] + "요일)";
 
-        let hours = ('0'+today.getHours()).slice(-2);
-        let mins = ('0'+today.getMinutes()).slice(-2);
-        let secs = ('0'+today.getSeconds()).slice(-2);
+        let hours = ('0' + today.getHours()).slice(-2);
+        let mins = ('0' + today.getMinutes()).slice(-2);
+        let secs = ('0' + today.getSeconds()).slice(-2);
         let timestr = "현재시간: " + hours + ":" + mins + ":" + secs;
 
         document.querySelector("#date").innerHTML = datestr;
         document.querySelector("#time").innerHTML = timestr;
 
-        setTimeout(getTime,1000);
+        setTimeout(getTime, 1000);
     }
 
+
+    let container = document.querySelector("#container");
+    let a = document.querySelector("#a");
+    let b = document.querySelector("#b");
+
+    function loading() {
+        let loadingwrap = document.querySelector(".loading-wrap");
+
+        setTimeout(function () {
+            loadingwrap.style.display = "none";
+            loading1();
+            loading2();
+        }, 2000);
+    }
+    function loading1() {
+        a.style.transform = "translateX(-100%)";
+        container.style.display = "inline";
+        setTimeout(function () {
+            a.style.display = "none";
+        }, 3000)
+    }
+
+    function loading2() {
+        b.style.transform = "translateX(100%)";
+        setTimeout(function () {
+            b.style.display = "none";
+        }, 3000)
+    }
 </script>
