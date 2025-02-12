@@ -167,7 +167,7 @@
         let hours = ('0'+today.getHours()).slice(-2);
         let mins = ('0'+today.getMinutes()).slice(-2);
         let secs = ('0'+today.getSeconds()).slice(-2);
-        let timestr = hours + ":" + mins + ":" + secs;
+        let timestr = "현재시간: " + hours + ":" + mins + ":" + secs;
 
         document.querySelector("#date").innerHTML = datestr;
         document.querySelector("#time").innerHTML = timestr;
