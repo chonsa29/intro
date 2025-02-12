@@ -14,31 +14,26 @@
         <!--헤더-->
         <div id="header">
             <div class="menu">
-                <a href="intro.html">menu1</a>
+                <a href="main.html">HOME</a>
                 <div class="options">
-                    <a class="lists">option1</a>
-                    <a class="lists">option2</a>
-                    <a class="lists">option3</a>
                 </div>
             </div>
             <div class="menu">
-                <a href="intro.html?content=">menu2</a>
+                <a href="about.html">ABOUT</a>
                 <div class="options">
-                    <a class="lists">option1</a>
-                    <a class="lists">option2</a>
-                    <a class="lists">option3</a>
+                    <a class="lists">자기소개</a>
+                    <a class="lists">Experience</a>
+                    <a class="lists">보유 기술</a>
+                    <a class="lists">Education</a>
                 </div>
             </div>
             <div class="menu">
-                <a href="intro.html?content=1">menu3</a>
+                <a href="contact.html">CONTACT</a>
                 <div class="options">
-                    <a class="lists">option1</a>
-                    <a class="lists">option2</a>
-                    <a class="lists">option3</a>
                 </div>
             </div>
             <div class="menu">
-                <a>menu4</a>
+                <a>ETC</a>
                 <div class="options">
                     <a class="lists">option1</a>
                     <a class="lists">option2</a>
@@ -60,9 +55,6 @@
             <div id="sns">
                 <h2>SNS</h2>
                 <h3><a href="media/3.jpg">클릭!@!@!</a></h3>
-            </div>
-            <div id ="visits">
-                <h2>오늘 방문자 수: <span id="visitCnt"></span></h2>
             </div>
             <div id="day">
                 <h2 id="date"></h2>
@@ -147,7 +139,7 @@
                 </table>
             </section>
             <div id="music">
-                <audio autoplay controls><source src = "media/bgm.mp3"></audio>
+                <audio controls><source src = "media/bgm.mp3"></audio>
             </div>
         </div>
     </div>
@@ -173,25 +165,6 @@
         document.querySelector("#time").innerHTML = timestr;
 
         setTimeout(getTime,1000);
-    }
-    expireDate = new Date();
-    expireDate.setDate(expireDate.getDate()+1);
-
-    visitCnt = eval(cookieVal("pageVisited"));
-    visitCnt++;
-    document.cookie = "pageVisited =" + visitCnt + ";expires=" + expireDate.toGMTString();  
-    
-    console.log(document.cookie);
-    console.log("pageVisited=" + visitCnt+";expires="+expireDate.toGMTString());
-    document.querySelector("#visitCnt").innerHTML = visitCnt;
-    function cookieVal(cookieName){
-        thisCookie = document.cookie.split("; ");
-        for(i = 0 ; i <thisCookie.length;i++){
-            if(cookieName == thisCookie[i].split("=")[0]){
-            return thisCookie[i].split("=")[1];
-            }
-        }
-        return 0;
     }
 
 </script>

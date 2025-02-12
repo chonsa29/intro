@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url("media/wallpaper.gif") no-repeat fixed;
+            background-size: cover;
+        }
+
+        #title {
+            margin-top: 18%;
+            text-align: center;
+            color: white;
+            font-size:xx-large;
+        }
+        #title h1{
+            position:relative;
+            display:inline-block;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-shadow:0px 0px 10px rgb(131, 131, 131);
+        }
+        #title h1::after{
+            content:"";
+            display:block;
+            position:absolute;
+            top:0;
+            right:-10px;
+            width:4px;
+            height:100%;
+            background-color:white;
+        }
+        #title h1.active::after{
+            display:none;
+        }
+        #main{
+            margin:auto;
+            width:10%;
+            height:70px;
+            background:rgba(255, 62, 204, 0.9);
+            border:7px solid rgb(56, 0, 113);
+            text-align: center;
+            border-radius: 10%;
+            line-height:70px;
+            box-shadow: 0px 0px 5px black;
+        }
+        a{
+            text-decoration:none;
+            color:rgb(35, 21, 21);
+            font-weight:bold;
+        }
+        #header{
+            text-align:right;
+            padding:20px 30px;
+            font-size:x-large;
+        }
+        #header a{
+            color:white;
+        }
+        #header #home{
+            margin-right:20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <a href="intro.html" id="home">HOME</a>
+        <a href="#" id="contact">CONTACT</a>
+    </div>
+    <div id="title">
+        <h1> </h1>
+        <div id="main"><a href="intro.html">Main</a></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const content = " Hello! Welcome To My Website! "
+	const text = document.querySelector("#title h1");
+	let i = 0;
+
+	function typing(){
+        let txt = content[i++];
+        text.innerHTML += txt;
+        if(i > content.length){
+            text.textContent = "";
+            i=0;
+        }
+	}
+	setInterval(typing,250);
+
+    const target = document.querySelector("#title h1");
+
+    function blink(){
+        target.classList.toggle("active");
+    }
+    setInterval(blink,250);
+</script>

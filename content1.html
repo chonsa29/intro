@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 
 <head>
@@ -163,4 +164,33 @@
 
 	init();
 
+=======
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>What time is it now</title>
+</head>
+
+<body>
+	<div class="text_box">
+		<span class="text"></span>
+	</div>
+</body>
+
+</html>
+<script>
+	const content = "Hi I'm Sangwook"
+	const text = document.querySelector(".text");
+	let i = 0;
+
+	function typing(){
+		if (i< content.length){
+			let txt = content.charAt(i);
+			text.innerHTML += txt;
+			i++;
+		}
+	}
+	setInterval(typing,200);
+>>>>>>> 22772627ed33c4174fe63926ceed0f3526168b24
 </script>
