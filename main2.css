@@ -158,6 +158,10 @@ nav {
     border-radius:6px;
 
 }
+a{
+    text-decoration:none;
+    color:pink;
+}
 a:visited{
     text-decoration:none;
     color:pink;
