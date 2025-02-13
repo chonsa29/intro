@@ -193,9 +193,21 @@ nav li:hover .nav-text {
     left: 30px;
     font-size: 18px;
     text-shadow: 0px 0px 5px black;
+    text-align:center;
     z-index:1;
+    display:none;
 }
-
+#hide{
+    position:relative;
+    top:-20px;
+    left:70px;
+    opacity:0.5;
+    width:100px;
+}
+#hide:hover{
+    opacity:1;
+    cursor:pointer;
+}
 /*2페이지*/
 
 /*사이드바*/
@@ -330,4 +342,27 @@ td {
 }
 .sns:hover{
     transform:scale(1.3);
+}
+
+/*4페이지*/
+#login{
+    border:4px solid white;
+    box-shadow:0px 0px 10px purple;
+    border-radius:8px;
+    width:40%;
+    height:30%;
+    margin:auto;
+    position:relative;
+    top:30%;
+}
+#loginTitle{
+    color:white;
+    text-shadow:0px 0px 10px purple;
+    font-size:30px;
+    font-weight:bolder;
+    display:inline-block;
+    position:relative;
+    top:33%;
+    left:30%;
+
 }

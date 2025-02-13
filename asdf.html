@@ -3,57 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>배경 클릭 애니메이션</title>
+    <title>텍스트 상자</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
+        .box-container {
             position: relative;
-            height: 10000px;
-            background-color: #222;
-            transition: background-color 1s ease;
+            display: inline-block;
+            padding-top: 10px;
         }
-        .ripple {
+
+        .box-label {
             position: absolute;
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple-effect 5s forwards;
+            top: -8px;
+            left: 10px;
+            background: white; /* 배경을 흰색으로 설정 */
+            padding: 0 5px;
+            font-size: 14px;
         }
-        @keyframes ripple-effect {
-            from {
-                transform: scale(0);
-                opacity: 1;
-            }
-            to {
-                transform: scale(10);
-                opacity: 0;
-            }
+
+        .box {
+            width: 300px;
+            height: 150px;
+            border: 2px solid black;
+            padding: 10px;
+            position: relative;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: 5px;
+            width: 40px; /* 텍스트 길이에 맞게 조정 */
+            height: 4px;
+            background: white;
         }
     </style>
 </head>
 <body>
-    
+    <div class="box-container">
+        <div class="box-label">text</div>
+        <div class="box"></div>
+    </div>
 </body>
 </html>
-
-<script>
-    document.body.addEventListener('click', function(event) {
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple');
-        document.body.appendChild(ripple);
-        
-        const size = Math.max(window.innerWidth, window.innerHeight);
-        const hue = Math.random() * 360;
-        const color = `hsl(${hue}, 100%, 50%)`;
-        
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${event.clientX - size / 2}px`;
-        ripple.style.top = `${event.clientY - size / 2}px`;
-        ripple.style.background = `radial-gradient(circle, ${color} 0%, rgba(255, 255, 255, 0) 80%)`;
-        
-        ripple.addEventListener('animationend', () => {
-            ripple.remove();
-            document.body.style.backgroundColor = color;
-        });
-    });
-</script>
