@@ -9,6 +9,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 	<script src="https://jhammann.github.io/sakura/dist/sakura.js"></script>
 	<title>Document</title>
+	<style>
+		.material-symbols-outlined {
+			font-variation-settings:
+
+		}
+	</style>
 </head>
 
 <body onload="loading(), changePage()">
@@ -74,7 +80,7 @@
 	</div>
 
 	<div id="page2" class="section">
-		<div id="sidebar">
+		<div id="sidebar" class="side_light">
 			<div id="icon">
 			</div>
 			<div id="name">
@@ -82,12 +88,24 @@
 			</div>
 			<p>프로그래밍 재밌다</p>
 			<div id="detail">
-                <p>Incheon, Korea</p>
-                <p>chonsa29@gmail.com</p>
-				<p>010-1234-5678</p>
-            </div>
+				<p><span class="material-symbols-outlined" style="position:relative; top:4px;">
+						home
+					</span>
+					Incheon, Korea
+				</p>
+				<p><span class="material-symbols-outlined" style="position:relative; top:4px;">
+						alternate_email
+					</span>
+					chonsa29@gmail.com
+				</p>
+				<p><span class="material-symbols-outlined" style="position:relative; top:4px;">
+						smartphone
+					</span>
+					010-1234-5678
+				</p>
+			</div>
 		</div>
-		<div id="content">
+		<div id="content" class="content_light">
 			<div id="intro">
 				<span class="material-symbols-outlined button1" onclick="prev()">
 					arrow_back_ios
@@ -96,31 +114,40 @@
 				<span class="material-symbols-outlined button1" onclick="next()">
 					arrow_forward_ios
 				</span>
+				<span class="material-symbols-outlined mode1" id="dark_mode" style="font-size:40px;" onclick="fnMode()">
+					dark_mode
+				</span>
+				<span class="material-symbols-outlined mode2" id="light_mode" style="font-size:40px;display:none;" onclick="fnMode()">
+					light_mode
+				</span>
 				<div id="contents">
 
 				</div>
+
 			</div>
+
 			<div id="pageNo">
 				1
 			</div>
 		</div>
 	</div>
 	<div id="page3" class="section">
-	<div id="sns">
+		<div id="sns">
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/instagram.png" width="100"></a>
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/facebook.png" width="100"></a>
-			<a href="https://github.com/chonsa29" class="sns" target="blank"><img src="media/github.png" width="100"></a>
-	</div>
+			<a href="https://github.com/chonsa29" class="sns" target="blank"><img src="media/github.png"
+					width="100"></a>
+		</div>
 	</div>
 	<div id="page4" class="section">
 		<p id="loginTitle">로그인</p>
 		<div id="login">
 			<div id="container">
-				<div id="userId">아이디: <input> </div>
-				<div id="pwd" >비밀번호: <input type="password"> </div>
+				<div id="id">아이디: <input id="userId"> </div>
+				<div id="password">비밀번호: <input type="password" id="pwd"> </div>
 			</div>
 			<div id="button2">
-				<button id="loginBtn">
+				<button id="loginBtn" onclick="login()">
 					로그인
 				</button>
 				<button id="register" onclick="showPopup()">
@@ -136,15 +163,15 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWNNKYQMZ8"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
 
-  gtag('config', 'G-KWNNKYQMZ8');
+	gtag('config', 'G-KWNNKYQMZ8');
 </script>
 
 <script>
-	function noExists(){
+	function noExists() {
 		alert("없어요");
 	}
 	//벚꽃
@@ -170,19 +197,19 @@
 		setTimeout(getTime, 1000);
 	}
 
-	function hide(){
+	function hide() {
 		let date = document.querySelector("#date");
 		let time = document.querySelector("#time");
 		let hide = document.querySelector("#hide");
 
-		if(hide.innerHTML == "시간 숨기기"){
+		if (hide.innerHTML == "시간 숨기기") {
 			date.style.display = "none";
 			time.style.display = "none";
-			hide.innerHTML="시간 표시";
-		}else{
+			hide.innerHTML = "시간 표시";
+		} else {
 			date.style.display = "block";
 			time.style.display = "block";
-			hide.innerHTML="시간 숨기기";
+			hide.innerHTML = "시간 숨기기";
 		}
 	}
 	//로딩화면
@@ -210,14 +237,14 @@
 
 			loading1();
 			loading2();
-		}, 2000);
+		}, 0);
 	}
 	function loading1() {
 		a.style.transform = "translateX(-120%)";
 		setTimeout(function () {
 			a.style.display = "none";
 			getTime();
-			day.style.display="block";
+			day.style.display = "block";
 		}, 1800)
 	}
 
@@ -228,42 +255,65 @@
 		}, 1800)
 	}
 
+	//다크모드
+	function fnMode(){
+        let button= document.querySelector("#dark_mode");
+		let button2 = document.querySelector("#light_mode");
+
+		let sidebar = document.querySelector("#sidebar");
+		let content = document.querySelector("#content");
+
+		sidebar.classList.toggle('side_dark');
+		sidebar.classList.toggle('side_light');
+		content.classList.toggle('content_dark');
+		content.classList.toggle('content_light');
+        button.classList.toggle('mode1');
+        button.classList.toggle('mode2');
+        if (button.classList.contains('mode1')){
+			button2.style.display = "none";
+			button.style.display = "inline";
+        }else{
+			button.style.display = "none";
+			button2.style.display = "inline";
+			button2.style.color = "white";
+        }
+    }
 	//자기소개 페이지
 	let pageNo = document.querySelector("#pageNo");
 	let introTitle = document.querySelector("#introTitle");
 	let contents = document.querySelector("#contents");
-	function prev(){
-		if(pageNo.innerHTML < 2) {
+	function prev() {
+		if (pageNo.innerHTML < 2) {
 			alert("처음 페이지입니다.");
 			return;
 		}
 		else {
-			pageNo.innerHTML = (parseInt(pageNo.innerHTML)-1);
+			pageNo.innerHTML = (parseInt(pageNo.innerHTML) - 1);
 			contents.innerHTML = "";
 			changePage();
 		}
 	}
 
-	function next(){
-		if(pageNo.innerHTML > 3) {
+	function next() {
+		if (pageNo.innerHTML > 3) {
 			alert("마지막 페이지입니다.");
 			return;
 		}
 		else {
-			pageNo.innerHTML = (parseInt(pageNo.innerHTML)+1);
+			pageNo.innerHTML = (parseInt(pageNo.innerHTML) + 1);
 			contents.innerHTML = "";
 			changePage();
 		}
 	}
 
-	function changePage(){
-		if(pageNo.innerHTML == 1){
+	function changePage() {
+		if (pageNo.innerHTML == 1) {
 			introTitle.innerHTML = "자기소개";
 			let text = document.createElement("p");
-			text.innerHTML="저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어 소프트웨어 개발을 공부하게 되었습니다."+
-							" 비록 실무 경험은 부족하지만, 꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.";
+			text.innerHTML = "저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어 소프트웨어 개발을 공부하게 되었습니다." +
+				" 비록 실무 경험은 부족하지만, 꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.";
 			contents.appendChild(text);
-		}else if(pageNo.innerHTML == 2){
+		} else if (pageNo.innerHTML == 2) {
 			introTitle.innerHTML = "Experience";
 			let ul1 = document.createElement("ul");
 			let ul2 = document.createElement("ul");
@@ -278,7 +328,7 @@
 			li1_1.innerHTML = "HTML/CSS/JAVASCRIPT";
 			li1_2.innerHTML = "웹 페이지 못 만든다";
 			li1_3.innerHTML = "다 못함...";
-			li2_1.innerHTML ="자바 조금함";
+			li2_1.innerHTML = "자바 조금함";
 			li2_2.innerHTML = "오라클도 조금 함";
 			contents.appendChild(ul1);
 			contents.appendChild(ul2);
@@ -288,56 +338,67 @@
 			ul2.appendChild(li2_1);
 			ul2.appendChild(li2_2);
 
-		}else if(pageNo.innerHTML == 3){
+		} else if (pageNo.innerHTML == 3) {
 			introTitle.innerHTML = "보유 기술";
-			contents.innerHTML = "<ul>"+
-				"<li>자바<br>"+
-				"<progress class=\"progress\" value=\"10\" min=\"0\" max=\"100\"></progress>"+
-				"<li>오라클<br>"+
-				"<progress class=\"progress\" value=\"15\" min=\"0\" max=\"100\"></progress>"+
-				"<li>HTML<br>"+
-				"<progress class=\"progress\" value=\"5\" min=\"0\" max=\"100\"></progress>"+
-				"<li>C++<br>"+
-				"<progress class=\"progress\" value=\"50\" min=\"0\" max=\"100\"></progress>"			
+			contents.innerHTML = "<ul>" +
+				"<li>자바<br>" +
+				"<progress class=\"progress\" value=\"10\" min=\"0\" max=\"100\"></progress>" +
+				"<li>오라클<br>" +
+				"<progress class=\"progress\" value=\"15\" min=\"0\" max=\"100\"></progress>" +
+				"<li>HTML<br>" +
+				"<progress class=\"progress\" value=\"5\" min=\"0\" max=\"100\"></progress>" +
+				"<li>C++<br>" +
+				"<progress class=\"progress\" value=\"50\" min=\"0\" max=\"100\"></progress>"
 				;
-		}else if(pageNo.innerHTML == 4){
+		} else if (pageNo.innerHTML == 4) {
 			introTitle.innerHTML = "Education";
-			contents.innerHTML = 
-                "<table>"+
-                    "<caption>학력 사항</caption>"+
-                    "<thead>"+
-                        "<tr>"+
-                            "<th>출신학교</th>"+
-                            "<th>전공</th>"+
-                            "<th>기간</th>"+
-                            "<th>구분</th>"+
-                       "</tr>"+
-                    "</thead>"+
-                    "<tbody>"+
-                        "<tr>"+
-                            "<td>인하대학교</td>"+
-                            "<td>컴퓨터공학과</td>"+
-                            "<td>2019.3 ~ </td>"+
-                            "<td>휴학</td>"+
-                        "</tr>"+
-                        "<tr>"+
-                            "<td>Korean International School Philippines</td>"+
-                            "<td> 이과 </td>"+
-                           "<td>2017.3 ~ 2019.2</td>"+
-                            "<td>졸업</td>"+
-                        "</tr>"+
-                    "</tbody>"+
-                "</table>"
-			;
+			contents.innerHTML =
+				"<table>" +
+				"<caption>학력 사항</caption>" +
+				"<thead>" +
+				"<tr>" +
+				"<th>출신학교</th>" +
+				"<th>전공</th>" +
+				"<th>기간</th>" +
+				"<th>구분</th>" +
+				"</tr>" +
+				"</thead>" +
+				"<tbody>" +
+				"<tr>" +
+				"<td>인하대학교</td>" +
+				"<td>컴퓨터공학과</td>" +
+				"<td>2019.3 ~ </td>" +
+				"<td>휴학</td>" +
+				"</tr>" +
+				"<tr>" +
+				"<td>Korean International School Philippines</td>" +
+				"<td> 이과 </td>" +
+				"<td>2017.3 ~ 2019.2</td>" +
+				"<td>졸업</td>" +
+				"</tr>" +
+				"</tbody>" +
+				"</table>"
+				;
 
 		}
 	}
 
 	/*로그인*/
+	function login() {
+		let id = document.querySelector("#userId").value;
+		let pwd = document.querySelector("#pwd").value;
 
+		console.log(id + pwd);
+		if (id == "test1234" && pwd == "test1234") {
+			alert("로그인 성공!");
+			location.href = "intro.html";
+		} else {
+			alert("로그인 실패");
+		}
+	}
 
 	/*회원가입*/
-	function showPopup(){
-		window.open("register.html","register","width=500, height =300, left = 100, top = 50")	
+	function showPopup() {
+		window.open("register.html", "register", "width=500, height =300, left = 100, top = 50")
 	}
 </script>
