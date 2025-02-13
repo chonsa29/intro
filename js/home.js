@@ -2,6 +2,32 @@ function noExists() {
     alert("없어요");
 }
 
+//벚꽃
+function createPetal() {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    
+    const startX = Math.random() * window.innerWidth;
+    const duration = Math.random() * 5 + 5; // 3초~8초 지속
+    const delay = Math.random() * 5; // 랜덤한 지연 시간
+
+    petal.style.left = `${startX}px`;
+    petal.style.animationDuration = `${duration}s`;
+    petal.style.animationDelay = `-${delay}s`; // 자연스럽게 생성되도록
+
+    document.body.appendChild(petal);
+
+    // 애니메이션이 끝나면 제거
+    setTimeout(() => {
+        petal.remove();
+    }, duration * 1000);
+}
+
+function createPetals() {
+    setInterval(createPetal, 150); // 0.3초마다 새로운 벚꽃 생성
+}
+
+createPetals();
 //시간
 function getTime() {
     let today = new Date();
@@ -62,7 +88,7 @@ function loading() {
 
         loading1();
         loading2();
-    }, 2000);
+    }, 0);
 }
 function loading1() {
     a.style.transform = "translateX(-120%)";
@@ -226,3 +252,34 @@ function login() {
 function showPopup() {
     window.open("register.html", "register", "width=500, height =300, left = 100, top = 50")
 }
+
+/*페이지 자동 전환*/
+
+let timer;
+let value2;
+
+
+document.addEventListener("scroll", () => {
+    if (timer) {
+        clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+        let value1 = value2;
+        value2 = document.documentElement.scrollTop;
+        let height = document.querySelector("#page1").offsetHeight;
+
+        if(value2 > 0 && value2 < height && value2 > value1){
+            location.href="#page2";
+        }else if(value2 > 0 && value2 < height && value2 < value1){
+            location.href ="#page1";
+        }else if(value2 > height && value2 < height*2 && value2 > value1){
+            location.href ="#page3";
+        }else if(value2 > height && value2 < height*2 && value2 < value1){
+            location.href ="#page2";
+        }else if(value2 > height*2 && value2 < height*3 && value2 > value1){
+            location.href ="#page4";
+        }else if(value2 > height*2 && value2 < height*3 && value2 < value1){
+            location.href ="#page3";
+        }
+    }, 150);
+})

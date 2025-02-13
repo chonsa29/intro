@@ -4,16 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="main2.css" />
+	<link rel="stylesheet" href="css/home.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-	<script type="text/javascript" src="./sakura.js"></script>	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 	<title>Document</title>
-	<style>
-        html, body {
-          background-color: #1a1a1a;
-          width: 100%;
-        }
-      </style>
 </head>
 
 <body onload="loading(), changePage()">
@@ -37,7 +33,7 @@
 			<h2 id="date"></h2>
 			<h2 id="time"></h2>
 			<h5 id="hide" onclick="hide()">시간 숨기기</h5>
-			
+
 		</div>
 		<!--네비게이션-->
 		<nav>
@@ -45,7 +41,7 @@
 				<li>
 					<a href="#page1">
 						<span class="material-symbols-outlined" style="font-size:40px;">
-							radio_button_checked
+							home
 						</span>
 						<span class="nav-text">HOME</span>
 					</a>
@@ -53,7 +49,7 @@
 				<li>
 					<a href="#page2">
 						<span class="material-symbols-outlined" style="font-size:40px;">
-							radio_button_checked
+							info
 						</span>
 						<span class="nav-text">ABOUT</span>
 					</a>
@@ -61,7 +57,7 @@
 				<li>
 					<a href="#page3">
 						<span class="material-symbols-outlined" style="font-size:40px;">
-							radio_button_checked
+							alternate_email
 						</span>
 						<span class="nav-text">CONTACT</span>
 					</a>
@@ -69,7 +65,7 @@
 				<li>
 					<a href="#page4">
 						<span class="material-symbols-outlined" style="font-size:40px;">
-							radio_button_checked
+							more_horiz
 						</span>
 						<span class="nav-text">ETC</span>
 					</a>
@@ -111,17 +107,21 @@
 		<!--내용-->
 		<div id="content" class="content_light">
 			<div id="intro">
-				<span class="material-symbols-outlined button1" onclick="prev()">
+				<div onclick="prev()" class="introBtn">이전</div><span class="material-symbols-outlined button1"
+					onclick="prev()">
 					arrow_back_ios
 				</span>
 				<h1 id="introTitle"></h1>
 				<span class="material-symbols-outlined button1" onclick="next()">
 					arrow_forward_ios
 				</span>
-				<span class="material-symbols-outlined mode1" id="dark_mode" style="font-size:40px;" onclick="fnMode()">
+				<div onclick="next()" class="introBtn">다음</div>
+				<span id="modeTxt" onclick="fnMode()">mode: </span>
+				<span class="material-symbols-outlined mode1" id="dark_mode" style="font-size:50px;" onclick="fnMode()">
 					dark_mode
 				</span>
-				<span class="material-symbols-outlined mode2" id="light_mode" style="font-size:40px;display:none;" onclick="fnMode()">
+				<span class="material-symbols-outlined mode2" id="light_mode" style="font-size:50px;display:none;"
+					onclick="fnMode()">
 					light_mode
 				</span>
 				<div id="contents">
@@ -137,6 +137,17 @@
 	</div>
 	<!--페이지3-->
 	<div id="page3" class="section">
+		<div class="scroll-text">
+			<div class="track">
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			  <p>SCROLL TEXT</p>
+			</div>
+		  </div>
 		<div id="sns">
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/instagram.png" width="100"></a>
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/facebook.png" width="100"></a>
@@ -150,8 +161,8 @@
 		<p id="loginTitle">로그인</p>
 		<div id="login">
 			<div id="container">
-				<div id="id">아이디: <input id="userId"> </div>
-				<div id="password">비밀번호: <input type="password" id="pwd"> </div>
+				<div id="id">아이디: <input id="userId" value="test1234"> </div>
+				<div id="password">비밀번호: <input type="password" id="pwd" value="test1234"> </div>
 			</div>
 			<div id="button2">
 				<button id="loginBtn" onclick="login()">
@@ -164,5 +175,6 @@
 		</div>
 	</div>
 </body>
+
 </html>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
