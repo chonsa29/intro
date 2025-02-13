@@ -1,39 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://jhammann.github.io/sakura/dist/sakura.css">
-
-    <script src="https://jhammann.github.io/sakura/dist/sakura.js"></script>
-
-    <div id="sakura-petals"></div>
-
-    <script> var sakura = new Sakura('#sakura-petals'); </script>
+    <title>배경 클릭 애니메이션</title>
     <style>
-        body{
-            margin:0px;
+        body {
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            height: 10000px;
+            background-color: #222;
+            transition: background-color 1s ease;
         }
-        #a{
-            width:100%;
-            height:1000px;
-            background:url("media/wallpaper.jpg");
-            background-size:cover;
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-effect 5s forwards;
         }
-        #b{
-            width:100%;
-            height:1000px;
-            background:url("media/background.png");
-            background-size:cover;
+        @keyframes ripple-effect {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(10);
+                opacity: 0;
+            }
         }
     </style>
-    <title>Document</title>
 </head>
-    <div id="a"></div>
-    <div id="b"></div>
 <body>
-
+    
 </body>
-
 </html>
+
+<script>
+    document.body.addEventListener('click', function(event) {
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        document.body.appendChild(ripple);
+        
+        const size = Math.max(window.innerWidth, window.innerHeight);
+        const hue = Math.random() * 360;
+        const color = `hsl(${hue}, 100%, 50%)`;
+        
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${event.clientX - size / 2}px`;
+        ripple.style.top = `${event.clientY - size / 2}px`;
+        ripple.style.background = `radial-gradient(circle, ${color} 0%, rgba(255, 255, 255, 0) 80%)`;
+        
+        ripple.addEventListener('animationend', () => {
+            ripple.remove();
+            document.body.style.backgroundColor = color;
+        });
+    });
+</script>
