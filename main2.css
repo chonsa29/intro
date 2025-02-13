@@ -3,7 +3,7 @@ html{
 }
 body {
     margin: 0;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 #page1, #page2, #page3, #page4{
     display: none;
@@ -241,7 +241,7 @@ nav li:hover .nav-text {
 #detail{
     margin-top:20%;
 }
-/*사이드바 다크모드*/
+/*사이드바 모드*/
 .side_dark{
     background-color:#222;
     color:white;
@@ -442,3 +442,4 @@ td {
         cursor:pointer;
     }
 }
+

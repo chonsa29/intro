@@ -5,14 +5,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="main2.css" />
-	<link rel="stylesheet" href="https://jhammann.github.io/sakura/dist/sakura.css">
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-	<script src="https://jhammann.github.io/sakura/dist/sakura.js"></script>
-
+	<script type="text/javascript" src="./sakura.js"></script>	
 	<title>Document</title>
+	<style>
+        html, body {
+          background-color: #1a1a1a;
+          width: 100%;
+        }
+      </style>
 </head>
 
 <body onload="loading(), changePage()">
+
 	<div class="loader">
 		<div class="dot"></div>
 		<div class="dot"></div>
@@ -26,13 +31,15 @@
 	<div id="a"></div>
 	<div id="b"></div>
 
-
+	<!--시간-->
 	<div id="page1" class="section">
 		<div id="day">
 			<h2 id="date"></h2>
 			<h2 id="time"></h2>
 			<h5 id="hide" onclick="hide()">시간 숨기기</h5>
+			
 		</div>
+		<!--네비게이션-->
 		<nav>
 			<ul>
 				<li>
@@ -73,8 +80,9 @@
 			배움에 열정을 갖고 성장하는 개발자 천상욱입니다.
 		</div>
 	</div>
-
+	<!-- 페이지2-->
 	<div id="page2" class="section">
+		<!--사이드바-->
 		<div id="sidebar" class="side_light">
 			<div id="icon">
 			</div>
@@ -100,6 +108,7 @@
 				</p>
 			</div>
 		</div>
+		<!--내용-->
 		<div id="content" class="content_light">
 			<div id="intro">
 				<span class="material-symbols-outlined button1" onclick="prev()">
@@ -126,6 +135,7 @@
 			</div>
 		</div>
 	</div>
+	<!--페이지3-->
 	<div id="page3" class="section">
 		<div id="sns">
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/instagram.png" width="100"></a>
@@ -134,6 +144,8 @@
 					width="100"></a>
 		</div>
 	</div>
+
+	<!--페이지4-->
 	<div id="page4" class="section">
 		<p id="loginTitle">로그인</p>
 		<div id="login">
@@ -152,7 +164,5 @@
 		</div>
 	</div>
 </body>
-
 </html>
-<script src="path/to/sakura.min.js"></script>
-<script type="text/javascript" src="main.js"></script> 
+<script type="text/javascript" src="main.js"></script>

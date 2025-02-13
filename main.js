@@ -1,8 +1,6 @@
 function noExists() {
     alert("없어요");
 }
-//벚꽃
-var sakura = new Sakura('#page1');
 
 //시간
 function getTime() {
