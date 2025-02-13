@@ -364,5 +364,39 @@ td {
     position:relative;
     top:33%;
     left:30%;
-
+}
+#container{
+    width: 280px;
+    margin:auto;
+    margin-top:10%;
+}
+#container{
+    input{
+        float:right;
+    }
+    #userId, #pwd{
+        margin: 10px 5px;
+        color:white;
+        font-weight:bold;
+        text-shadow: 1px 1px 3px purple;
+        font-size: 20px;
+    }
+}
+#button2{
+    text-align:center;
+}
+#button2{
+    button{
+        padding: 10px 15px;
+        margin: 10px 30px;
+        background-color:black;
+        border-style:none;
+        border-radius:6px;
+        color:white;
+        font-weight:bold;
+        font-size:15px;
+    }
+    button:hover{
+        cursor:pointer;
+    }
 }

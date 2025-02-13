@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text {
+            width: 290px;
+        }
+
+        #userId,
+        #pwd,
+        #pwdCheck,
+        #phone {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="text"><label>아이디: <input id="userId"></label></div>
+        <div class="text"> <label>패스워드: <input id="pwd" type="password"></label></div>
+        <div class="text"><label>패스워드 확인: <input id="pwdCheck" type="password"></label></div>
+        <div class="text"><label>핸드폰번호: <input id="phone"></label></div>
+        <div>
+            관심언어:
+            <label><input type="checkbox" name="language" value="자바">자바</label>
+            <label><input type="checkbox" name="language" value="오라클">오라클</label>
+            <label><input type="checkbox" name="language" value="html">html</label>
+            <label><input type="checkbox" name="language" value="python">python</label>
+        </div>
+        <div>
+            성별:
+            <label><input type="radio" name="gender" value="남자" checked>남자</label>
+            <label><input type="radio" name="gender" value="여자">여자</label>
+        </div>
+        <button onclick="check()">회원가입</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function check() {
+        let userId = document.querySelector("#userId").value;
+        let pwd = document.querySelector("#pwd").value;
+        let pwdCheck = document.querySelector("#pwdCheck").value;
+        let phone = document.querySelector("#phone").value;
+        let language = document.getElementsByName("language");
+        let gender = document.getElementsByName("gender");
+        let cnt = -1;
+ 
+        for (i = 0; i < language.length; i++) {
+            if (language[i].checked == true) {
+                cnt = i;
+            }
+        }
+
+        const pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+        const pattern2 =  /^(?=.*?[#?!@$ %^&*-]).{6,}$/;
+        const upper = /^[A-Z]+$/;
+        const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+        const number = /^[0-9]*$/;
+
+        if (pattern.test(userId) || upper.test(userId) || korean.test(userId)) {
+            alert("아이디는 숫자와 영어 소문자만 사용 가능합니다.");
+            return;
+        }
+        if (userId.length < 6) {
+            alert("아이디는 6글자 이상이여야 합니다.");
+            return;
+        }
+        if (pwd != pwdCheck) {
+            alert("비밀번호가 다릅니다.");
+            return;
+        }
+        if (pwd.length < 6) {
+            alert("비밀번호는 6글자 이상이여야 합니다.");
+            return;
+        }
+        if(!pattern2.test(pwd)){
+            alert("비밀번호는 특수문자를 하나 포함해야 합니다.");
+            return;
+        }
+        if(phone.length != 11){
+            alert("11자리 번호를 입력해주세요.");
+            return;
+        }
+        if(!number.test(phone)){
+            alert("핸드폰번호는 숫자만 입력가능합니다.");
+            return;
+        }
+        if (cnt == -1){
+            let check = confirm("관심언어를 선택하지 않았습니다. 그대로 진행하시겠습니까?");
+            if(check){
+                alert("화원가입을 축하합니다.");
+                location.href = "popup.html";
+            }else{
+                return;
+            }
+        }
+        else {
+            alert("화원가입을 축하합니다.");
+            location.href = "popup.html";
+        }
+    }
+    
+
+</script>

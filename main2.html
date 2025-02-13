@@ -115,6 +115,18 @@
 	<div id="page4" class="section">
 		<p id="loginTitle">로그인</p>
 		<div id="login">
+			<div id="container">
+				<div id="userId">아이디: <input> </div>
+				<div id="pwd" >비밀번호: <input type="password"> </div>
+			</div>
+			<div id="button2">
+				<button id="loginBtn">
+					로그인
+				</button>
+				<button id="register" onclick="showPopup()">
+					회원가입
+				</button>
+			</div>
 		</div>
 	</div>
 </body>
@@ -319,5 +331,13 @@
 			;
 
 		}
+	}
+
+	/*로그인*/
+
+
+	/*회원가입*/
+	function showPopup(){
+		window.open("register.html","register","width=500, height =300, left = 100, top = 50")	
 	}
 </script>
