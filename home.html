@@ -70,6 +70,14 @@
 						<span class="nav-text">ETC</span>
 					</a>
 				</li>
+				<li>
+					<a href="#page5">
+						<span class="material-symbols-outlined" style="font-size:40px;">
+							music_note
+						</span>
+						<span class="nav-text">MUSIC</span>
+					</a>
+				</li>
 			</ul>
 		</nav>
 		<div class="overlay">
@@ -139,15 +147,14 @@
 	<div id="page3" class="section">
 		<div class="scroll-text">
 			<div class="track">
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
-			  <p>SCROLL TEXT</p>
+				<p>심심해서 넣어본 텍스트</p>
+				<p>심심해서 넣어본 텍스트</p>
+				<p>심심해서 넣어본 텍스트</p>
+				<p>심심해서 넣어본 텍스트</p>
+				<p>심심해서 넣어본 텍스트</p>
+				<p>심심해서 넣어본 텍스트</p>
 			</div>
-		  </div>
+		</div>
 		<div id="sns">
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/instagram.png" width="100"></a>
 			<a class="sns" href="#page3" onclick="noExists()"><img src="media/facebook.png" width="100"></a>
@@ -171,6 +178,32 @@
 				<button id="register" onclick="showPopup()">
 					회원가입
 				</button>
+			</div>
+		</div>
+	</div>
+	<!--페이지5-->
+	<div id="page5">
+		<div class="music-container">
+			<div class="album-cover">음악 사진</div>
+			<div class="audio-control">
+				<audio controls>
+					<source src="music.mp3" type="audio/mp3">
+					브라우저가 오디오 태그를 지원하지 않습니다.
+				</audio>
+			</div>
+			<div class="playlist">
+				<h3 onclick="togglePlaylist()" style="cursor: pointer;"><span class="material-symbols-outlined" style="font-size:50px;margin-top:20px;">
+						list
+					</span></h3>
+				<ul id="playlist">
+					<li>노래 1</li>
+					<li>노래 2</li>
+					<li>노래 3</li>
+					<li>노래 4</li>
+					<li>노래 5</li>
+					<li>노래 6</li>
+					<li>노래 7</li>
+				</ul>
 			</div>
 		</div>
 	</div>

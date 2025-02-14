@@ -68,6 +68,7 @@ let page1 = document.querySelector("#page1");
 let page2 = document.querySelector("#page2");
 let page3 = document.querySelector("#page3");
 let page4 = document.querySelector("#page4");
+let page5 = document.querySelector("#page5");
 let a = document.querySelector("#a");
 let b = document.querySelector("#b");
 let day = document.querySelector("#day");
@@ -81,10 +82,12 @@ function loading() {
         page2.style.display = "block";
         page3.style.display = "block";
         page4.style.display = "block";
+        page5.style.display = "block";
         page1.classList.add("show");
         page2.classList.add("show");
         page3.classList.add("show");
         page4.classList.add("show");
+        page5.classList.add("show");
 
         loading1();
         loading2();
@@ -280,6 +283,20 @@ document.addEventListener("scroll", () => {
             location.href ="#page4";
         }else if(value2 > height*2 && value2 < height*3 && value2 < value1){
             location.href ="#page3";
+        }else if(value2 > height*3 && value2 < height*4 && value2 > value1){
+            location.href ="#page5";
+        }else if(value2 > height*3 && value2 < height*4 && value2 < value1){
+            location.href ="#page4";
         }
     }, 150);
 })
+
+/*플레이리스트*/
+function togglePlaylist() {
+    var playlist = document.getElementById("playlist");
+    if (playlist.style.maxHeight === "0px" || playlist.style.maxHeight === "") {
+        playlist.style.maxHeight = "200px";
+    } else {
+        playlist.style.maxHeight = "0px";
+    }
+}

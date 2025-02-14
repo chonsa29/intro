@@ -5,13 +5,38 @@ body {
     margin: 0;
     overflow-x:hidden;
 }
-#page1, #page2, #page3, #page4{
+#page1, #page2, #page3, #page4, #page5{
     display: none;
+    position:relative;
 }
 #page2{
     background: linear-gradient(to bottom, #1a1a2e, #4072fb);  
-    position:relative;
     z-index:0;
+}
+
+#page3{
+    background: linear-gradient(to bottom, #0f3460, #533483);
+    z-index:0;
+}
+
+#page4{
+    background: linear-gradient(to bottom, #e94560, #903749);
+    z-index:0;
+}
+
+#page5{
+    width:100%;
+    height:100vh;
+    background-image: linear-gradient(135deg,#ff40a9 0%, #ffdba8 100%);
+    display:flex;
+
+}
+.section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .section::after{
     content:"";
@@ -22,27 +47,8 @@ body {
     top:0;
     left:0;
     z-index:-1;
-    opacity:0.3;
+    opacity:0.2;
 }
-#page3{
-    background: linear-gradient(to bottom, #0f3460, #533483);
-    position:relative;
-    z-index:0;
-}
-
-#page4{
-    background: linear-gradient(to bottom, #e94560, #903749);
-    position:relative;
-    z-index:0;
-}
-.section {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /*로딩 화면*/
 #a {
     background-color: #eee;
@@ -410,12 +416,13 @@ td {
 }
 
 /*3페이지*/
+/*움직이는 텍스트*/
 @keyframes scroll-animation{
     0%{
       left: 0;
     }
     100%{
-      left: -17vw; /* 텍스트 width와 동일 */
+      left: -20vw; /* 텍스트 width와 동일 */
     }
   }
   .scroll-text{
@@ -431,9 +438,10 @@ td {
   }
   .track p{
     float: left;
-    width: 17vw;
+    width: 20vw;
     font-size: 3.6vh;
   }
+  /*sns*/
 #sns{
     align-items: center;
     display: flex;
@@ -521,3 +529,51 @@ td {
     font-style: normal;
 }  
 
+/*페이지5*/
+.music-container {
+    width: 400px;
+    padding: 20px;
+    background: rgb(151, 36, 36);
+    box-shadow: 0 0 10px rgb(128, 19, 19);
+    border-radius: 10px;
+    border:10px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin:auto;
+    position:relative;
+    top:20%;
+}
+.album-cover {
+    width: 100%;
+    height: 200px;
+    background: gray;
+    margin-bottom: 10px;
+}
+.audio-control {
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.audio-control audio {
+    width: 100%;
+    outline: none;
+}
+.playlist {
+    text-align: left;
+}
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+.playlist li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+.playlist li:hover {
+    background: #efefef;
+}
