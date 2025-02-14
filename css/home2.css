@@ -1,0 +1,184 @@
+/*페이지3,4,5*/ 
+
+/*3페이지*/
+/*움직이는 텍스트*/
+@keyframes scroll-animation{
+    0%{
+      left: 0;
+    }
+    100%{
+      left: -20vw; /* 텍스트 width와 동일 */
+    }
+  }
+  .scroll-text{
+    width: 100%;
+    float:right;
+    overflow: hidden;
+    color:white;
+  }
+  .track{
+    position: relative;
+    width: 120vw;
+    animation: scroll-animation 5s linear infinite;
+  }
+  .track p{
+    float: left;
+    width: 20vw;
+    font-size: 3.6vh;
+  }
+  /*sns*/
+#sns{
+    align-items: center;
+    display: flex;
+    justify-content:space-evenly;
+    position:relative; 
+    margin:auto;
+    top:20%;
+    width:50%;
+    height:30vh;
+    border:4px solid white;
+    border-radius:10px;
+    box-shadow:0px 0px 5px black;
+}
+.sns{
+    transition:transform 0.5s ease;
+    transform:translateZ(10px);
+}
+.sns:hover{
+    transform:scale(1.3);
+}
+
+/*4페이지*/
+#login{
+    border:4px solid white;
+    box-shadow:0px 0px 10px purple;
+    border-radius:8px;
+    width:40%;
+    height:30%;
+    margin:auto;
+    position:relative;
+    top:30%;
+}
+#loginTitle{
+    color:white;
+    text-shadow:0px 0px 10px purple;
+    font-size:30px;
+    font-weight:bolder;
+    display:inline-block;
+    position:relative;
+    top:33%;
+    left:30%;
+}
+#container{
+    width: 280px;
+    margin:auto;
+    margin-top:10%;
+}
+#container{
+    input{
+        float:right;
+        margin-top:3px;
+        color:black;
+    }
+    #id, #password{
+        margin: 10px 5px;
+        color:white;
+        font-weight:bold;
+        text-shadow: 1px 1px 3px purple;
+        font-size: 20px;
+    }
+}
+#button2{
+    text-align:center;
+}
+#button2{
+    button{
+        padding: 10px 15px;
+        margin: 10px 30px;
+        background-color:black;
+        border-style:none;
+        border-radius:6px;
+        color:white;
+        font-weight:bold;
+        font-size:15px;
+    }
+    button:hover{
+        cursor:pointer;
+    }
+}
+
+/*나눔펜 글꼴*/
+#page2 {
+    font-family: "Nanum Pen Script", serif;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+/*페이지5*/
+.music-container {
+    width: 20vw;
+    padding: 1vw;
+    background: rgb(107, 5, 5);
+    box-shadow: 0 0 10px rgb(236, 61, 61);
+    border-radius: 10px;
+    border:10px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin:auto;
+    position:relative;
+    top:20%;
+}
+.album-cover {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+.audio-control {
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.audio-control audio {
+    width: 100%;
+    outline: none;
+}
+.playlist {
+    text-align: left;
+}
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+.playlist li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+.playlist li:hover {
+    background: #efefef;
+}
+
+.song{
+    width:15vw;
+    height:60vh;
+    background-color:#eee;
+    border-radius:10px;
+    position:absolute;
+    top:20%;
+    left:40%;
+    text-align:center;
+    opacity:0;
+    transition:1s;
+}
+.song-cover{
+    margin:10% 5%;
+    width:90%;
+    height:40%;
+    background-image:url("/media/song2.jpg");
+    background-size:cover;
+    border:1px solid black;
+}

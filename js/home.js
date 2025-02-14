@@ -6,7 +6,7 @@ function noExists() {
 function createPetal() {
     const petal = document.createElement("div");
     petal.classList.add("petal");
-    
+
     const startX = Math.random() * window.innerWidth;
     const duration = Math.random() * 5 + 5; // 3초~8초 지속
     const delay = Math.random() * 5; // 랜덤한 지연 시간
@@ -91,7 +91,7 @@ function loading() {
 
         loading1();
         loading2();
-    }, 2000);
+    }, 0);
 }
 function loading1() {
     a.style.transform = "translateX(-120%)";
@@ -110,8 +110,8 @@ function loading2() {
 }
 
 //다크모드
-function fnMode(){
-    let button= document.querySelector("#dark_mode");
+function fnMode() {
+    let button = document.querySelector("#dark_mode");
     let button2 = document.querySelector("#light_mode");
 
     let sidebar = document.querySelector("#sidebar");
@@ -123,10 +123,10 @@ function fnMode(){
     content.classList.toggle('content_light');
     button.classList.toggle('mode1');
     button.classList.toggle('mode2');
-    if (button.classList.contains('mode1')){
+    if (button.classList.contains('mode1')) {
         button2.style.display = "none";
         button.style.display = "inline";
-    }else{
+    } else {
         button.style.display = "none";
         button2.style.display = "inline";
         button2.style.color = "white";
@@ -271,22 +271,22 @@ document.addEventListener("scroll", () => {
         value2 = document.documentElement.scrollTop;
         let height = document.querySelector("#page1").offsetHeight;
 
-        if(value2 > 0 && value2 < height && value2 > value1){
-            location.href="#page2";
-        }else if(value2 > 0 && value2 < height && value2 < value1){
-            location.href ="#page1";
-        }else if(value2 > height && value2 < height*2 && value2 > value1){
-            location.href ="#page3";
-        }else if(value2 > height && value2 < height*2 && value2 < value1){
-            location.href ="#page2";
-        }else if(value2 > height*2 && value2 < height*3 && value2 > value1){
-            location.href ="#page4";
-        }else if(value2 > height*2 && value2 < height*3 && value2 < value1){
-            location.href ="#page3";
-        }else if(value2 > height*3 && value2 < height*4 && value2 > value1){
-            location.href ="#page5";
-        }else if(value2 > height*3 && value2 < height*4 && value2 < value1){
-            location.href ="#page4";
+        if (value2 > 0 && value2 < height && value2 > value1) {
+            location.href = "#page2";
+        } else if (value2 > 0 && value2 < height && value2 < value1) {
+            location.href = "#page1";
+        } else if (value2 > height && value2 < height * 2 && value2 > value1) {
+            location.href = "#page3";
+        } else if (value2 > height && value2 < height * 2 && value2 < value1) {
+            location.href = "#page2";
+        } else if (value2 > height * 2 && value2 < height * 3 && value2 > value1) {
+            location.href = "#page4";
+        } else if (value2 > height * 2 && value2 < height * 3 && value2 < value1) {
+            location.href = "#page3";
+        } else if (value2 > height * 3 && value2 < height * 4 && value2 > value1) {
+            location.href = "#page5";
+        } else if (value2 > height * 3 && value2 < height * 4 && value2 < value1) {
+            location.href = "#page4";
         }
     }, 150);
 })
@@ -300,3 +300,33 @@ function togglePlaylist() {
         playlist.style.maxHeight = "0px";
     }
 }
+
+let song = document.querySelector(".song")
+let songList = document.querySelectorAll(".songList");
+let songCover = document.querySelector(".song-cover");
+let songTitle = document.querySelector("#songTitle");
+let playing = document.querySelector('#playing');
+let albumCover = document.querySelector(".album-cover");
+songList.forEach((songs, index) => {
+    songs.addEventListener('mouseover', function () {
+        song.style.left="20%";
+        song.style.opacity = "1";
+    })
+    songs.addEventListener('mouseout', function () {
+        song.style.left="40%";
+        song.style.opacity = "0";
+    })
+})
+
+for(let i = 0;i<songList.length;i++){
+    songList[i].onclick = function(e){
+        
+        console.log(albumCover.style.backgroundImage);
+        let temp = playing.innerHTML;
+        playing.src = "/media/song"+this.value+".mp3";
+        let temp2 = albumCover.style.backgroundImage;
+        albumCover.style.backgroundImage = "url(\"media/song"+this.value+".jpg\"";
+
+    }
+}
+
