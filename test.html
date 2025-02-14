@@ -1,72 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            font-size: 12px;
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+    <br />
+    
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
         }
-
-        #wrap {
-            position: relative;
-            width: 960px;
-            margin: 0 auto;
-        }
-
-        .gnb {
-            position: relative;
-            display: inline-block;
-        }
-
-        .gnb>li {
-            position: relative;
-            float: left;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="wrap">
-        <div class="header">
-            <ul class="gnb">
-                <li>
-                    <a href="index.html" class="rollover">
-                        <img src="images/menu01_off.png" alt="Home">
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <img src="images/menu02_off.png" alt="Products">
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="rollover">
-                        <img src="images/menu03_off.png" alt="Company">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</body>
-
+      });
+    </script>
+  </body>
 </html>
-
-<script>
-    const rollover = document.querySelectorAll('.rollover');
-
-    rollover.forEach((aTag, index) => {
-        let off_str = aTag.querySelector('img').getAttribute('src');
-        let on_str = off_str.replace('_off', '_on');
-        // mouse on
-        aTag.addEventListener('mouseover', function () {
-            this.querySelector('img').setAttribute('src', on_str);
-        });
-        // mouse off
-        aTag.addEventListener('mouseout', function () {
-            this.querySelector('img').setAttribute('src', off_str);
-        });
-    });
-</script>

@@ -10,6 +10,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<title>Document</title>
 </head>
 
@@ -183,31 +184,32 @@
 		</div>
 	</div>
 	<!--페이지5-->
-	<div id="page5">
-		<div class="song">
-			<div class="song-cover">음악 사진</div>
-			<div class="song-info" id="songTitle">노래 제목:</div>
-			<div class="song-info" id="singer">가수:</div>
-			<div class="song-info" id="etc">@@@</div>
-		</div>
-		<div class="music-container">
-			<div class="album-cover" style="background:url(media/song1.jpg) no-repeat center; background-size:contain;"></div>
-			<div class="audio-control">
-				<audio controls>21asdf1
-					<source src="media/song1.mp3" type="audio/mp3" id="playing">
-				</audio>
+	<div id="page5" class="section">
+		<div id="app">
+			<div class="song">
+				<div class="song-cover" v-bind:style="songCover"></div>
+				<div class="song-info" id="songTitle">노래 제목:{{title}}</div>
+				<div class="song-info" id="singer">가수:{{singer}}</div>
+				<div class="song-info" id="etc">info:{{inf}}</div>
 			</div>
-			<div class="playlist">
-				<h3 onclick="togglePlaylist()" style="cursor: pointer;"><span class="material-symbols-outlined" style="font-size:50px;margin-top:20px;">
-						list
-					</span></h3>
-				<ul id="playlist">
-					<li class="songList" value="2">노래 1</li>
-					<li class="songList" value="3">노래 2</li>
-					<li class="songList" value="4">노래 3</li>
-					<li class="songList" value="5">노래 4</li>
-					<li class="songList" value="6">노래 5</li>
-				</ul>
+			<div class="music-container">
+				<div class="album-cover"
+					style="background:url(media/song1.jpg) no-repeat center; background-size:contain;"></div>
+				<div class="audio-control">
+					<audio controls>
+						<source src="media/song1.mp3" type="audio/mp3" id="playing">
+					</audio>
+					
+				</div>
+				<div class="playlist">
+					<h3 onclick="togglePlaylist()" style="cursor: pointer;"><span
+							class="material-symbols-outlined" style="font-size:50px;margin-top:20px;">
+							list
+						</span></h3>
+					<ul id="playlist">
+						<li v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)">{{i.song.title}}</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -215,3 +217,68 @@
 
 </html>
 <script type="text/javascript" src="js/home.js"></script>
+
+<script>
+	var app = new Vue({
+		el: '#app',
+		
+		data: {
+			title:"",
+			singer:"",
+			inf:"",
+			songCover:{
+				background:"black"
+			},
+			arr: [
+				{
+					song: {
+						title: "노래1",
+						singer: "가수1",
+						info: "설명1",
+						background: "url(\"./media/song1.jpg\")",
+					}
+				},
+				{
+					song: {
+						title: "노래2",
+						singer: "가수2",
+						info: "설명2",
+						background:"white",
+					}
+				},
+				{
+					song: {
+						title: "노래3",
+						singer: "가수3",
+						info: "설명3",
+						background:"orange",
+					}
+				},
+				{
+					song: {
+						title: "노래4",
+						singer: "가수4",
+						info: "설명4",
+						background:"yellow",
+					}
+				},
+				{
+					song: {
+						title: "노래5",
+						singer: "가수5",
+						info: "설명5",
+						background:"green",
+					}
+				}
+			]
+		},
+		methods: {
+			info: function(title,singer,inf,background){
+				this.title= title
+				this.singer = singer
+				this.inf = inf
+				this.songCover.background = background
+			}
+		}//methods
+	});
+</script>

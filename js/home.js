@@ -288,45 +288,16 @@ document.addEventListener("scroll", () => {
         } else if (value2 > height * 3 && value2 < height * 4 && value2 < value1) {
             location.href = "#page4";
         }
-    }, 150);
+    }, 50);
 })
 
 /*플레이리스트*/
 function togglePlaylist() {
     var playlist = document.getElementById("playlist");
     if (playlist.style.maxHeight === "0px" || playlist.style.maxHeight === "") {
-        playlist.style.maxHeight = "200px";
+        playlist.style.maxHeight = "21vh";
     } else {
         playlist.style.maxHeight = "0px";
-    }
-}
-
-let song = document.querySelector(".song")
-let songList = document.querySelectorAll(".songList");
-let songCover = document.querySelector(".song-cover");
-let songTitle = document.querySelector("#songTitle");
-let playing = document.querySelector('#playing');
-let albumCover = document.querySelector(".album-cover");
-songList.forEach((songs, index) => {
-    songs.addEventListener('mouseover', function () {
-        song.style.left="20%";
-        song.style.opacity = "1";
-    })
-    songs.addEventListener('mouseout', function () {
-        song.style.left="40%";
-        song.style.opacity = "0";
-    })
-})
-
-for(let i = 0;i<songList.length;i++){
-    songList[i].onclick = function(e){
-        
-        console.log(albumCover.style.backgroundImage);
-        let temp = playing.innerHTML;
-        playing.src = "/media/song"+this.value+".mp3";
-        let temp2 = albumCover.style.backgroundImage;
-        albumCover.style.backgroundImage = "url(\"media/song"+this.value+".jpg\"";
-
     }
 }
 

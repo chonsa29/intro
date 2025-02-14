@@ -1,4 +1,4 @@
-/*페이지3,4,5*/ 
+    /*페이지3,4,5*/ 
 
 /*3페이지*/
 /*움직이는 텍스트*/
@@ -117,15 +117,16 @@
 /*페이지5*/
 .music-container {
     width: 20vw;
+    max-height:80vh;
     padding: 1vw;
-    background: rgb(107, 5, 5);
-    box-shadow: 0 0 10px rgb(236, 61, 61);
+    background: rgb(154, 149, 255);
+    box-shadow: 0 0 5px rgb(234, 255, 184);
     border-radius: 10px;
     border:10px solid rgba(0, 0, 0, 0.2);
     text-align: center;
-    margin:auto;
-    position:relative;
+    position:absolute;
     top:20%;
+    left:40%;
 }
 .album-cover {
     width: 100%;
@@ -135,8 +136,7 @@
 .audio-control {
     margin-bottom: 10px;
     background: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
+    border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .audio-control audio {
@@ -169,16 +169,15 @@
     border-radius:10px;
     position:absolute;
     top:20%;
-    left:40%;
+    left:23%;
     text-align:center;
-    opacity:0;
     transition:1s;
 }
 .song-cover{
     margin:10% 5%;
     width:90%;
     height:40%;
-    background-image:url("/media/song2.jpg");
-    background-size:cover;
+    background:url("./media/song2.jpg");
+    background-size:contain;
     border:1px solid black;
 }
