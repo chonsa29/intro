@@ -119,15 +119,28 @@
     width: 20vw;
     max-height:80vh;
     padding: 1vw;
-    background: rgb(154, 149, 255);
-    box-shadow: 0 0 5px rgb(234, 255, 184);
-    border-radius: 10px;
-    border:10px solid rgba(0, 0, 0, 0.2);
-    text-align: center;
+    padding-left:2vw;
+    padding-top:2vw;
     position:absolute;
     top:20%;
     left:40%;
+    z-index:1;
 }
+.music-container::after{
+    content:"";
+    width:100%;
+    height:100%;
+    background:rgb(154, 149, 255);
+    border-radius: 10px;
+    border:10px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgb(234, 255, 184);
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0.8;
+    z-index:-1;
+}
+
 .album-cover {
     width: 100%;
     height: 200px;
@@ -173,7 +186,7 @@
     left:40%;
     text-align:center;
     opacity:0;
-    transition:1s;
+    transition:0.5s ease-in-out;
 }
 .song-cover{
     margin:10% 5%;
@@ -181,8 +194,3 @@
     height:40%;
     border-radius:10px;
 }
-
-.song-info{
-    display:none;
-}
-/* width 15vw height 60vh left 23% */

@@ -188,17 +188,15 @@
 		<div id="app">
 			<div class="songList" v-bind:style="songList">
 				<div class="song-cover" v-bind:style="songCover"></div>
-				<div class="song-info" v-bind:style="songInfo">노래 제목:{{title}}</div>
-				<div class="song-info" v-bind:style="songInfo">가수:{{singer}}</div>
-				<div class="song-info" v-bind:style="songInfo">info:{{inf}}</div>
+				<div class="song-info">노래 제목:{{title}}</div>
+				<div class="song-info">가수:{{singer}}</div>
+				<div class="song-info">info:{{inf}}</div>
+				
 			</div>
 			<div class="music-container">
-				<div class="album-cover"></div>
+				<div class="album-cover" v-bind:style="albumCover"></div>
 				<div class="audio-control">
-					<audio controls>
-						<source src="" type="audio/mp3">
-					</audio>
-					
+					<audio controls ref="audioPlayer" v-bind:src="source.link"></audio>
 				</div>
 				<div class="playlist">
 					<h3 onclick="togglePlaylist()" style="cursor: pointer;"><span
@@ -206,10 +204,11 @@
 							list
 						</span></h3>
 					<ul id="playlist">
-						<li v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" @mouseout="mouseout">{{i.song.title}}</li>
+						<li class="songs" v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" 
+						@click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}</li>
 					</ul>
 				</div>
-			</div>
+			</div>`
 		</div>
 	</div>
 </body>

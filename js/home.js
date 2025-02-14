@@ -302,24 +302,30 @@ function togglePlaylist() {
 }
 var app = new Vue({
     el: '#app',
-    
+
     data: {
-        title:"",
-        singer:"",
-        inf:"",
-        songCover:{
-            background:"black",
-            backgroundSize:"contain",
-            backgroundRepeat:"no-repeat",
+        title: "",
+        singer: "",
+        inf: "",
+        songCover: {
+            background: "black",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
         },
-        songList:{
-            width:"",
-            height:"",
-            left:"",
-            opacity:""
+        songList: {
+            width: "",
+            height: "",
+            left: "",
+            opacity: ""
         },
-        songInfo:{
-            display:""
+        albumCover: {
+            background: "",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+        },
+        source: {
+            link: "./media/song2.mp3"
         },
         arr: [
             {
@@ -328,6 +334,7 @@ var app = new Vue({
                     singer: "가수1",
                     info: "설명1",
                     background: "url(\"./media/song1.jpg\")",
+                    link: "./media/song1.mp3",
                 }
             },
             {
@@ -335,7 +342,8 @@ var app = new Vue({
                     title: "노래2",
                     singer: "가수2",
                     info: "설명2",
-                    background:"url(\"./media/song2.jpg\")",
+                    background: "url(\"./media/song2.jpg\")",
+                    link: "./media/song2.mp3",
                 }
             },
             {
@@ -343,7 +351,8 @@ var app = new Vue({
                     title: "노래3",
                     singer: "가수3",
                     info: "설명3",
-                    background:"orange",
+                    background: "orange",
+                    link: "./media/song3.mp3",
                 }
             },
             {
@@ -351,7 +360,8 @@ var app = new Vue({
                     title: "노래4",
                     singer: "가수4",
                     info: "설명4",
-                    background:"yellow",
+                    background: "yellow",
+                    link: "./media/song4.mp3",
                 }
             },
             {
@@ -359,14 +369,15 @@ var app = new Vue({
                     title: "노래5",
                     singer: "가수5",
                     info: "설명5",
-                    background:"green",
+                    background: "green",
+                    link: "./media/song5.mp3",
                 }
             }
         ]
     },
     methods: {
-        info: function(title,singer,inf,background){
-            this.title= title
+        info: function (title, singer, inf, background) {
+            this.title = title
             this.singer = singer
             this.inf = inf
             this.songCover.background = background
@@ -374,14 +385,25 @@ var app = new Vue({
             this.songList.height = "60vh"
             this.songList.left = "23%"
             this.songList.opacity = "1"
-            this.songInfo.display="block"
+
         },
-        mouseout: function(){
+        mouseout: function () {
             this.songList.width = ""
             this.songList.height = ""
             this.songList.left = ""
             this.songList.opacity = ""
-            this.songInfo.display="none"
+        },
+        changeSong: function (background, link) {
+            this.albumCover.background = background
+            this.source.link = link
+            console.log(this.source.link);
+
+            this.$nextTick(() => {
+                if (this.$refs.audioPlayer) {
+                    this.$refs.audioPlayer.load();
+                    this.$refs.audioPlayer.play();
+                }
+            })
         }
     }//methods
 });

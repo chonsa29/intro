@@ -6,16 +6,28 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
-    <br />
-    
-    <script>
-      var app = new Vue({
-        el: "#app",
-        data: {
-          message: "Hello Vue!",
+    <template>
+        <div
+          @click="
+            play(
+              'http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3'
+            )
+          "
+        >
+          audioPlayer
+        </div>
+      </template>
+      <script>
+      export default {
+        methods: {
+          play(sound) {
+            if (sound) {
+              var audio = new Audio(sound);
+              audio.play();
+            }
+          }
         }
-      });
-    </script>
+      };
+      </script>
   </body>
 </html>
