@@ -47,7 +47,7 @@ body {
 #a {
     background-color: #eee;
     width: 50%;
-    height: 1000px;
+    height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
@@ -58,7 +58,7 @@ body {
 #b {
     background-color: #eee;
     width: 50%;
-    height: 1000px;
+    height: 100vh;
     position: absolute;
     right: 0;
     top: 0;
@@ -74,8 +74,8 @@ body {
 
 .dot {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 2vw;
+    height: 2vw;
     background-color: rgb(243, 52, 52);
     border-radius: 50%;
     animation: orbit 1.5s linear infinite;
@@ -107,9 +107,9 @@ body {
 /*벚꽃*/
 .petal {
     position: absolute;
-    top: -50px;
-    width: 15px;
-    height: 20px;
+    top: -5vh;
+    width: 0.7vw;
+    height: 2vh;
     background: linear-gradient(rgb(255, 211, 219),rgb(255, 135, 135));
     border-radius: 60%;
     opacity: 0.8;
@@ -134,24 +134,24 @@ body {
 }
 
 .overlay {
-    height: 100px;
-    line-height:100px;
+    height: 10vh;
+    line-height:10vh;
     margin: 0 auto;
-    max-width: 1000px;
+    max-width:55vw;
     overflow: hidden;
-    padding: 50px;
+    padding: 5vh;
     color: white;
     position: relative;
     top:40%;
     text-align: center;
-    font-size: 40px;
+    font-size: 4vh;
     font-weight: bold;
     text-shadow: 0px 0px 5px rgb(255, 20, 157);
     z-index: 0;
 
     &:before {
         content: '';
-        filter: blur(20px);
+        filter: blur(1vh);
         height: 100%;
         left: 0;
         position: absolute;
@@ -165,7 +165,7 @@ body {
 nav {
     position: fixed;
     top:50%;
-    right: 30px;
+    right: 3vw;
     transform: translateY(-50%);
     z-index:1;
 }
@@ -174,7 +174,7 @@ nav ul{
     padding:0;
 }
 nav li{
-    margin: 10px 0;
+    margin: 1vw 0;
     position: relative;
 }
 nav a{
