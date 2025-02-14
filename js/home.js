@@ -300,4 +300,88 @@ function togglePlaylist() {
         playlist.style.maxHeight = "0px";
     }
 }
-
+var app = new Vue({
+    el: '#app',
+    
+    data: {
+        title:"",
+        singer:"",
+        inf:"",
+        songCover:{
+            background:"black",
+            backgroundSize:"contain",
+            backgroundRepeat:"no-repeat",
+        },
+        songList:{
+            width:"",
+            height:"",
+            left:"",
+            opacity:""
+        },
+        songInfo:{
+            display:""
+        },
+        arr: [
+            {
+                song: {
+                    title: "노래1",
+                    singer: "가수1",
+                    info: "설명1",
+                    background: "url(\"./media/song1.jpg\")",
+                }
+            },
+            {
+                song: {
+                    title: "노래2",
+                    singer: "가수2",
+                    info: "설명2",
+                    background:"url(\"./media/song2.jpg\")",
+                }
+            },
+            {
+                song: {
+                    title: "노래3",
+                    singer: "가수3",
+                    info: "설명3",
+                    background:"orange",
+                }
+            },
+            {
+                song: {
+                    title: "노래4",
+                    singer: "가수4",
+                    info: "설명4",
+                    background:"yellow",
+                }
+            },
+            {
+                song: {
+                    title: "노래5",
+                    singer: "가수5",
+                    info: "설명5",
+                    background:"green",
+                }
+            }
+        ]
+    },
+    methods: {
+        info: function(title,singer,inf,background){
+            this.title= title
+            this.singer = singer
+            this.inf = inf
+            this.songCover.background = background
+            this.songList.width = "15vw"
+            this.songList.height = "60vh"
+            this.songList.left = "23%"
+            this.songList.opacity = "1"
+            this.songInfo.display="block"
+        },
+        mouseout: function(){
+            this.songList.width = ""
+            this.songList.height = ""
+            this.songList.left = ""
+            this.songList.opacity = ""
+            this.songInfo.display="none"
+        }
+    }//methods
+});
