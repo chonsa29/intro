@@ -199,12 +199,12 @@
 					<audio controls ref="audioPlayer" v-bind:src="source.link"></audio>
 				</div>
 				<div class="playlist">
-					<h3 onclick="togglePlaylist()" style="cursor: pointer;"><span
-							class="material-symbols-outlined" style="font-size:50px;margin-top:20px;">
+					<span onclick="togglePlaylist()" style="cursor: pointer;font-size:50px;"
+							class="material-symbols-outlined">
 							list
-						</span></h3>
+						</span>
 					<ul id="playlist">
-						<li class="songs" v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" 
+						<li v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" 
 						@click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}</li>
 					</ul>
 				</div>

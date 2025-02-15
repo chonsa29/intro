@@ -295,7 +295,7 @@ document.addEventListener("scroll", () => {
 function togglePlaylist() {
     var playlist = document.getElementById("playlist");
     if (playlist.style.maxHeight === "0px" || playlist.style.maxHeight === "") {
-        playlist.style.maxHeight = "21vh";
+        playlist.style.maxHeight = "30vh";
     } else {
         playlist.style.maxHeight = "0px";
     }
@@ -325,7 +325,7 @@ var app = new Vue({
             backgroundPosition: "center"
         },
         source: {
-            link: "./media/song2.mp3"
+            link: ""
         },
         arr: [
             {
@@ -396,14 +396,7 @@ var app = new Vue({
         changeSong: function (background, link) {
             this.albumCover.background = background
             this.source.link = link
-            console.log(this.source.link);
-
-            this.$nextTick(() => {
-                if (this.$refs.audioPlayer) {
-                    this.$refs.audioPlayer.load();
-                    this.$refs.audioPlayer.play();
-                }
-            })
+            this.$refs.audioPlayer.play();
         }
     }//methods
 });
