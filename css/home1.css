@@ -22,12 +22,12 @@ body {
 }
 
 #page4{
-    background: linear-gradient(180deg, #800080, #4361ee);
+    background: linear-gradient(180deg, #800080, #0D05F2);
     z-index:0;
 }
 
 #page5{
-    background: linear-gradient(180deg,#4361ee, #ffdba8);
+    background: linear-gradient(180deg,#0D05F2, #F2C641);
     z-index:0;
 }
 .section {
@@ -41,7 +41,7 @@ body {
     content:"";
     width:100%;
     height:100%;
-    background:url("../media/header.jpg") no-repeat;
+    background:url("../media/header.jpg");
     position:absolute;
     top:0;
     left:0;
@@ -184,12 +184,12 @@ nav li{
 }
 nav a{
     text-decoration: none;
-    color: rgb(255, 152, 169);
+    color: #F2E205;
     font-size: 2vh;
     padding: 1h;
     display: inline-block;
     text-align: center; 
-    text-shadow:1px 1px 5px red;
+    text-shadow:1px 1px 5px #F2C641;
     text-align:center;
     transition:transform 0.5s ease;
 }
@@ -208,7 +208,7 @@ nav a:hover {
     transition: opacity 0.3s ease;
     white-space: nowrap;
     visibility: hidden;
-    background-color:rgb(255, 104, 104);
+    background-color:#F2C641;
     padding:1vh 3vh;
 }
 nav li:hover .nav-text {
@@ -294,7 +294,7 @@ nav li:hover .nav-text {
     height:70%;
     padding: 2% 1%;
     text-align:center;
-    border-radius:10px  ;
+    border-radius:10px;
     border:4px solid black;
     box-shadow: 0 0 10px black;
     font-size:2.5vh;

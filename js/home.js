@@ -262,43 +262,53 @@ let timer;
 let value2;
 
 
-document.addEventListener("scroll", () => {
-    if (timer) {
-        clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-        let value1 = value2;
-        value2 = document.documentElement.scrollTop;
-        let height = document.querySelector("#page1").offsetHeight;
+document.addEventListener("wheel", () => {
 
-        if (value2 > 0 && value2 < height && value2 > value1) {
-            location.href = "#page2";
-        } else if (value2 > 0 && value2 < height && value2 < value1) {
-            location.href = "#page1";
-        } else if (value2 > height && value2 < height * 2 && value2 > value1) {
-            location.href = "#page3";
-        } else if (value2 > height && value2 < height * 2 && value2 < value1) {
-            location.href = "#page2";
-        } else if (value2 > height * 2 && value2 < height * 3 && value2 > value1) {
-            location.href = "#page4";
-        } else if (value2 > height * 2 && value2 < height * 3 && value2 < value1) {
-            location.href = "#page3";
-        } else if (value2 > height * 3 && value2 < height * 4 && value2 > value1) {
-            location.href = "#page5";
-        } else if (value2 > height * 3 && value2 < height * 4 && value2 < value1) {
-            location.href = "#page4";
-        }
-    }, 50);
+    let value1 = value2;
+    value2 = document.documentElement.scrollTop;
+    let height = document.querySelector("#page1").offsetHeight;
+
+    if (value2 > 0 && value2 < height && value2 > value1) {
+        location.href = "#page2";
+    } else if (value2 > 0 && value2 < height && value2 < value1) {
+        location.href = "#page1";
+    } else if (value2 > height && value2 < height * 2 && value2 > value1) {
+        location.href = "#page3";
+    } else if (value2 > height && value2 < height * 2 && value2 < value1) {
+        location.href = "#page2";
+    } else if (value2 > height * 2 && value2 < height * 3 && value2 > value1) {
+        location.href = "#page4";
+    } else if (value2 > height * 2 && value2 < height * 3 && value2 < value1) {
+        location.href = "#page3";
+    } else if (value2 > height * 3 && value2 < height * 4 && value2 > value1) {
+        location.href = "#page5";
+    } else if (value2 > height * 3 && value2 < height * 4 && value2 < value1) {
+        location.href = "#page4";
+    }
+
 })
+
+// let page = document.querySelector("#page1");
+
+// window.addEventListener("wheel", function(event) {
+//     if (event.deltaY > 0) {
+//         console.log(page.id)
+//         this.location.href = "#page1"
+//     } else if (event.deltaY < 0) {
+//         console.log(page.value)
+//         this.location.href="#page2"
+//     }
+// });
 
 /*플레이리스트*/
 function togglePlaylist() {
     var playlist = document.getElementById("playlist");
-    if (playlist.style.maxHeight === "0px" || playlist.style.maxHeight === "") {
-        playlist.style.maxHeight = "30vh";
+    if (playlist.style.height === "0vh") {
+        playlist.style.height = "30vh";
     } else {
-        playlist.style.maxHeight = "0px";
+        playlist.style.height = "0vh";
     }
+    console.log(playlist.style.height);
 }
 var app = new Vue({
     el: '#app',
@@ -397,6 +407,13 @@ var app = new Vue({
             this.albumCover.background = background
             this.source.link = link
             this.$refs.audioPlayer.play();
+            this.$nextTick(() => {
+                if (this.$refs.audioPlayer) {
+                    this.$refs.audioPlayer.play();
+                } else {
+                    console.error("audioPlayer 참조가 없습니다!");
+                }
+            });
         }
     }//methods
 });
