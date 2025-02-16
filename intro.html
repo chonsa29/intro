@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-    
     <link rel="stylesheet" href="css/intro.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <style>
-      
-    </style>
 </head>
 
 <body>
     <div id="app">
-        <nav>
-            <ul class="nav">
-                <li><router-link to="/" class="lists">홈</router-link></li>
-                <li><router-link to="/board" class="lists">게시판</router-link></li>
-                <li><router-link to="/write" class="lists">글쓰기</router-link></li>
-                <li><router-link to="/mypage" class="lists">마이페이지</router-link></li>
-                <li><a href="home.html" onclick="alert('로그아웃 되었습니다.')" class="lists">로그아웃</a></li>
-            </ul>
-        </nav>
+        <nav-bar></nav-bar>
         <router-view></router-view>
     </div>
-    <script src="main.js"></script>
 </body>
 
 </html>
 
-<script type="text/javascript" src="js/intro.js"></script>
+
+<script src="js/intro.js"></script>
