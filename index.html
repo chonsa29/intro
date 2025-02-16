@@ -8,11 +8,11 @@
 <body>
     <h1>게시판 목록</h1>
     <ul id="board"></ul>
-
+    
     <script>
         async function fetchData() {
             try {
-                const response = await fetch('https://your-backend-url/board');
+                const response = await fetch('http://localhost:5000/TBL_BOARD');
                 const data = await response.json();
                 const list = document.getElementById('board');
 
