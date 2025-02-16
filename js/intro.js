@@ -3,16 +3,36 @@ const Home = {
     template: `
       <div>
         <h1>홈</h1>
-        <section>
+        <section class="photo-info">
+          <div class="photo">
+            <!-- 사진 추가 -->
+            <img src="your_photo_url" alt="My Photo" />
+          </div>
+          <div class="info">
+            <p>이름: 홍길동</p>
+            <p>생일: 1990-01-01</p>
+            <p>나이: 35</p>
+            <p>성별: 남</p>
+          </div>
+        </section>
+        <section class="main-content">
           <h2>최근 추가된 글</h2>
           <ul>
-            <li v-for="post in posts" :key="post.id">{{ post.title }} - {{ post.content }}</li>
+            <li v-for="post in validPosts" :key="post.id">
+              <div class="post-content">
+                <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+              </div>
+              <div class="post-views">조회수: {{ post.views }}</div>
+            </li>
           </ul>
-        </section>
-        <section>
           <h2>인기 글</h2>
           <ul>
-            <!-- 인기 글 목록 표시 -->
+            <li v-for="post in popularPosts" :key="post.id">
+              <div class="post-content">
+                <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+              </div>
+              <div class="post-views">조회수: {{ post.views }}</div>
+            </li>
           </ul>
         </section>
       </div>
@@ -21,6 +41,14 @@ const Home = {
       return {
         posts: JSON.parse(localStorage.getItem('posts')) || []
       };
+    },
+    computed: {
+      validPosts() {
+        return this.posts.filter(post => post.title && post.content);
+      },
+      popularPosts() {
+        return this.validPosts.slice().sort((a, b) => b.views - a.views).slice(0, 5); // 조회수 기준으로 상위 5개 글 표시
+      }
     }
   };
   
@@ -32,13 +60,19 @@ const Home = {
         <h2>자유게시판</h2>
         <ul>
           <li v-for="post in freeBoard" :key="post.id">
-            <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+            <div class="post-content">
+              <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+            </div>
+            <div class="post-views">조회수: {{ post.views }}</div>
           </li>
         </ul>
         <h2>공지사항</h2>
         <ul>
           <li v-for="post in noticeBoard" :key="post.id">
-            <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+            <div class="post-content">
+              <router-link :to="'/post/' + post.id">{{ post.title }} - {{ post.content }}</router-link>
+            </div>
+            <div class="post-views">조회수: {{ post.views }}</div>
           </li>
         </ul>
       </div>
@@ -65,12 +99,12 @@ const Home = {
         <h1>글쓰기</h1>
         <form @submit.prevent="submitPost">
           <input type="text" v-model="title" placeholder="제목을 입력하세요" required>
-          <textarea v-model="content" placeholder="내용을 입력하세요" required></textarea>
           <select v-model="category" required>
             <option disabled value="">카테고리를 선택하세요</option>
             <option value="자유게시판">자유게시판</option>
             <option value="공지사항">공지사항</option>
           </select>
+          <textarea v-model="content" placeholder="내용을 입력하세요" required></textarea>
           <input type="file" @change="onFileChange">
           <button type="submit">등록</button>
         </form>
@@ -86,12 +120,18 @@ const Home = {
     },
     methods: {
       submitPost() {
+        // 제목과 내용이 비어있지 않은지 확인
+        if (!this.title || !this.content) {
+          alert('제목과 내용을 입력하세요.');
+          return;
+        }
         const post = {
           id: Date.now(),
           title: this.title,
           content: this.content,
           category: this.category,
-          attachment: this.attachment ? this.attachment.name : ''
+          attachment: this.attachment ? this.attachment.name : '',
+          views: 0 // 초기 조회수 0으로 설정
         };
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
         posts.push(post);
@@ -110,6 +150,7 @@ const Home = {
       <div>
         <h1>{{ post.title }}</h1>
         <p>{{ post.content }}</p>
+        <p>조회수: {{ post.views }}</p>
         <button @click="editPost">수정</button>
         <button @click="deletePost">삭제</button>
         <div v-if="isEditing">
@@ -132,6 +173,8 @@ const Home = {
     created() {
       const posts = JSON.parse(localStorage.getItem('posts')) || [];
       this.post = posts.find(post => post.id === parseInt(this.$route.params.id));
+      this.post.views++; // 조회수 증가
+      localStorage.setItem('posts', JSON.stringify(posts)); // 증가된 조회수를 로컬스토리지에 저장
       this.editTitle = this.post.title;
       this.editContent = this.post.content;
     },
@@ -180,6 +223,8 @@ const Home = {
   const routes = [
     { path: '/', component: Home },
     { path: '/board', component: Board },
+    { path: '/board/free', component: Board },
+    { path: '/board/notice', component: Board },
     { path: '/write', component: Write },
     { path: '/mypage', component: MyPage },
     { path: '/post/:id', component: PostDetail }
@@ -194,3 +239,4 @@ const Home = {
     el: '#app',
     router
   });
+  

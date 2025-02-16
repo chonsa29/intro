@@ -1,100 +1,154 @@
-body{
-    background-color:pink;
-}  body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-}
-
-nav {
+  }
+  
+  nav {
     background-color: #333;
     color: white;
     padding: 10px 0;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     list-style-type: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly; /* 버튼 정렬 */
     padding: 0;
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     margin: 0 15px;
-}
-
-nav ul li a {
+    position: relative;
+  }
+  
+  nav ul li a {
+    color: white;
     text-decoration: none;
-}
-
-aside {
-    width: 200px;
+  }
+  
+  nav ul li .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li:hover .submenu {
+    display: block;
+  }
+  
+  nav ul li .submenu li {
+    padding: 10px;
+  }
+  
+  router-link {
+    color: white; /* 버튼 텍스트 색상 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    background-color: #333; /* 버튼 배경색 */
+    text-decoration: none; /* 텍스트 장식 없앰 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* 기본 그림자 설정 */
+    transition: box-shadow 0.2s; /* 호버 시 그림자 전환 */
+  }
+  
+  router-link:hover {
+    box-shadow: 0 0 5px white; /* 호버 시 하얀색 그림자 */
+  }
+  
+  .photo-info {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
     float: left;
     padding: 20px;
     background-color: #fff;
     border-right: 1px solid #ddd;
-}
-
-aside h2 {
-    margin-top: 0;
-}
-
-main {
-    margin-left: 220px;
+  }
+  
+  .photo img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .info {
+    margin-top: 20px;
+  }
+  
+  .main-content {
+    margin-left: 20%;
     padding: 20px;
     background-color: #fff;
     min-height: 100vh;
-}
-
-form {
+  }
+  
+  form {
     margin-bottom: 20px;
-}
-
-input[type="text"] {
-    width: 80%;
+  }
+  
+  input[type="text"], textarea, select {
+    width: 100%;
     padding: 10px;
-    margin-right: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-button {
+  }
+  
+  textarea {
+    height: 200px; /* 텍스트 입력 공간을 크게 설정 */
+  }
+  
+  button {
     padding: 10px 20px;
     border: none;
     background-color: #007BFF;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
+  }
+  
+  button:hover {
     background-color: #0056b3;
-}
-
-ul {
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
-}
-
-li {
-    background-color: white;
+  }
+  
+  li {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
-}
-
-li button {
+    align-items: center; /* 조회수를 오른쪽에 배치 */
+  }
+  
+  li .post-content {
+    flex: 1;
+  }
+  
+  li .post-views {
+    margin-left: 20px; /* 조회수와 제목 간 간격 */
+    white-space: nowrap; /* 조회수가 여러 줄로 나뉘지 않도록 설정 */
+  }
+  
+  li button {
     background-color: red;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-}
-
-li button:hover {
+  }
+  
+  li button:hover {
     background-color: darkred;
-}
+  }
+  
