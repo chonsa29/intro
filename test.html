@@ -1,33 +1,66 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Vue.js</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home1.css" />
+    <link rel="stylesheet" href="css/home2.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
-  <body>
-    <template>
-        <div
-          @click="
-            play(
-              'http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3'
-            )
-          "
-        >
-          audioPlayer
-        </div>
-      </template>
-      <script>
-      export default {
-        methods: {
-          play(sound) {
-            if (sound) {
-              var audio = new Audio(sound);
-              audio.play();
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="navigateTo('home')">HOME</a></li>
+            <li><a href="#" onclick="navigateTo('about')">ABOUT</a></li>
+            <li><a href="#" onclick="navigateTo('contact')">CONTACT</a></li>
+            <li><a href="#" onclick="navigateTo('etc')">ETC</a></li>
+            <li><a href="#" onclick="navigateTo('music')">MUSIC</a></li>
+        </ul>
+    </nav>
+    
+    <div id="page1" class="section">HOME PAGE CONTENT</div>
+    <div id="page2" class="section" style="display:none;">ABOUT PAGE CONTENT</div>
+    <div id="page3" class="section" style="display:none;">CONTACT PAGE CONTENT</div>
+    <div id="page4" class="section" style="display:none;">ETC PAGE CONTENT</div>
+    <div id="page5" class="section" style="display:none;">MUSIC PAGE CONTENT</div>
+
+    <script>
+        const routes = {
+            home: "#page1",
+            about: "#page2",
+            contact: "#page3",
+            etc: "#page4",
+            music: "#page5"
+        };
+
+        function navigateTo(page) {
+            if (routes[page]) {
+                document.querySelectorAll(".section").forEach(section => {
+                    section.style.display = "none";
+                });
+                document.querySelector(routes[page]).style.display = "block";
+                history.pushState({ page }, "", "home.html");
             }
-          }
         }
-      };
-      </script>
-  </body>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("nav a").forEach(link => {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const page = this.textContent.toLowerCase();
+                    navigateTo(page);
+                });
+            });
+            
+            // 초기 페이지 설정
+            navigateTo("home");
+        });
+
+        window.addEventListener("popstate", function (event) {
+            navigateTo(event.state ? event.state.page : "home");
+        });
+    </script>
+</body>
 </html>

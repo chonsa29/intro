@@ -157,7 +157,7 @@
 }
 #playlist{
     margin:0;
-    height:0vh;
+    height:0px;
     transition: height 0.5s ease-in-out;
 }
 .playlist ul {

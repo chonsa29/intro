@@ -28,6 +28,34 @@ function createPetals() {
 }
 
 createPetals();
+
+// //별 배경
+// function createStars() {
+//     const numStars = 800; // 별 개수
+//     const container = document.querySelector(".star-container");
+//     const pageHeight = document.documentElement.scrollHeight;
+
+//     for (let i = 0; i < numStars; i++) {
+//         let star = document.createElement("div");
+//         star.className = "stars";
+
+//         let x = Math.random() * window.innerWidth;
+//         let y = Math.random() * pageHeight;
+//         let delay = Math.random() * 2;
+//         let size = Math.random() * 3 + 1; 
+
+//         star.style.left = `${x}px`;
+//         star.style.top = `${y}px`;
+//         star.style.animationDelay = `${delay+1}s`;
+//         star.style.width = `${size+2}px`;
+//         star.style.height = `${size+2}px`;
+
+//         container.appendChild(star);
+//     }
+// }
+
+// createStars();
+
 //시간
 function getTime() {
     let today = new Date();
@@ -288,27 +316,14 @@ document.addEventListener("wheel", () => {
 
 })
 
-// let page = document.querySelector("#page1");
-
-// window.addEventListener("wheel", function(event) {
-//     if (event.deltaY > 0) {
-//         console.log(page.id)
-//         this.location.href = "#page1"
-//     } else if (event.deltaY < 0) {
-//         console.log(page.value)
-//         this.location.href="#page2"
-//     }
-// });
-
 /*플레이리스트*/
 function togglePlaylist() {
-    var playlist = document.getElementById("playlist");
-    if (playlist.style.height === "0vh") {
+    let playlist = document.getElementById("playlist");
+    if (playlist.style.height == "0px" || playlist.style.height =="") {
         playlist.style.height = "30vh";
     } else {
-        playlist.style.height = "0vh";
+        playlist.style.height = "0px";
     }
-    console.log(playlist.style.height);
 }
 var app = new Vue({
     el: '#app',
@@ -417,3 +432,4 @@ var app = new Vue({
         }
     }//methods
 });
+

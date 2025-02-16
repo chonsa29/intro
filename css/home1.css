@@ -7,6 +7,7 @@ body {
     margin: 0;
     overflow-x:hidden;
 }
+
 #page1, #page2, #page3, #page4, #page5{
     display: none;
     position:relative;
@@ -48,6 +49,7 @@ body {
     z-index:-1;
     opacity:0.2;
 }
+
 /*로딩 화면*/
 #a {
     background-color: #eee;
@@ -113,9 +115,11 @@ body {
 .petal {
     position: absolute;
     top: -5vh;
-    width: 0.7vw;
-    height: 2vh;
-    background: linear-gradient(rgb(255, 211, 219),rgb(255, 135, 135));
+    width: 1vw;
+    height: 2.5vh;
+    /* background: linear-gradient(rgb(255, 211, 219),rgb(255, 135, 135)); */
+    background-image:url("../media/petal.png");
+    background-size:cover;
     border-radius: 60%;
     opacity: 0.8;
     animation: fall linear infinite;
@@ -131,6 +135,7 @@ body {
         opacity: 0;
     }
 }
+
 /*페이지1*/
 #page1,
 .overlay:before {
