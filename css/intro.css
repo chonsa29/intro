@@ -1,154 +1,104 @@
+/* 전체 페이지 스타일 */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+/* 네비게이션 바 스타일 */
+nav {
+  background-color: #007bff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  position: relative;
+}
+
+.nav .lists {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  display: block;
+  transition: background 0.3s;
+}
+
+.nav .lists:hover {
+  background: #0056b3;
+  border-radius: 5px;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown .submenu li {
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown .submenu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown .submenu a {
+  display: block;
+  padding: 12px;
+  color: #343a40;
+  text-decoration: none;
+  text-align: left;
+  font-size: 16px;
+}
+
+.dropdown .submenu a:hover {
+  background: #f1f1f1;
+}
+
+/* 마우스를 올리면 드롭다운 메뉴 표시 */
+.dropdown:hover .submenu {
+  display: block;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .nav {
+      flex-direction: column;
   }
-  
-  nav {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+
+  .nav li {
+      width: 100%;
+      text-align: center;
   }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-evenly; /* 버튼 정렬 */
-    padding: 0;
+
+  .dropdown .submenu {
+      width: 100%;
   }
-  
-  nav ul li {
-    margin: 0 15px;
-    position: relative;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  nav ul li .submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #333;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  nav ul li:hover .submenu {
-    display: block;
-  }
-  
-  nav ul li .submenu li {
-    padding: 10px;
-  }
-  
-  router-link {
-    color: white; /* 버튼 텍스트 색상 */
-    padding: 10px 20px; /* 버튼 패딩 */
-    background-color: #333; /* 버튼 배경색 */
-    text-decoration: none; /* 텍스트 장식 없앰 */
-    border-radius: 5px; /* 버튼 모서리 둥글게 */
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* 기본 그림자 설정 */
-    transition: box-shadow 0.2s; /* 호버 시 그림자 전환 */
-  }
-  
-  router-link:hover {
-    box-shadow: 0 0 5px white; /* 호버 시 하얀색 그림자 */
-  }
-  
-  .photo-info {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    float: left;
-    padding: 20px;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-  }
-  
-  .photo img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .info {
-    margin-top: 20px;
-  }
-  
-  .main-content {
-    margin-left: 20%;
-    padding: 20px;
-    background-color: #fff;
-    min-height: 100vh;
-  }
-  
-  form {
-    margin-bottom: 20px;
-  }
-  
-  input[type="text"], textarea, select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  textarea {
-    height: 200px; /* 텍스트 입력 공간을 크게 설정 */
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* 조회수를 오른쪽에 배치 */
-  }
-  
-  li .post-content {
-    flex: 1;
-  }
-  
-  li .post-views {
-    margin-left: 20px; /* 조회수와 제목 간 간격 */
-    white-space: nowrap; /* 조회수가 여러 줄로 나뉘지 않도록 설정 */
-  }
-  
-  li button {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  li button:hover {
-    background-color: darkred;
-  }
-  
+}
