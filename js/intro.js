@@ -6,7 +6,7 @@ function getPosts() {
 function savePosts(posts) {
   localStorage.setItem('posts', JSON.stringify(posts));
 }
-// 네비게이션 바 컴포넌트 추가
+// 네비게이션 바
 Vue.component('nav-bar', {
   template: `
     <nav>
@@ -28,12 +28,12 @@ Vue.component('nav-bar', {
   methods: {
     logout() {
       alert('로그아웃 되었습니다.');
-      this.$router.push('/');
+      location.href = "home.html";
     }
   }
 });
 
-
+//홈 컴포넌트
 const Home = {
   template: `
     <div>
@@ -77,18 +77,18 @@ const Home = {
     sortedPosts() {
       return [...this.posts]
         .filter(post => post.title && post.content)
-        .sort((a, b) => b.id - a.id);  // 최신 순서로 정렬
+        .sort((a, b) => b.id - a.id);
     },
     popularPosts() {
       return [...this.posts]
         .filter(post => post.title && post.content)
         .sort((a, b) => b.views - a.views)
-        .slice(0, 5);  // 조회수 기준 상위 5개의 글만 표시
+        .slice(0, 5);
     }
   }
 };
 
-
+//보드 컴포넌트
 const Board = {
   template: `
     <div>
@@ -135,6 +135,7 @@ const Board = {
     }
   }
 };
+
 
 
 // Write 컴포넌트

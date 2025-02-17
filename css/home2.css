@@ -1,31 +1,6 @@
     /*페이지3,4,5*/ 
 
 /*3페이지*/
-/*움직이는 텍스트*/
-@keyframes scroll-animation{
-    0%{
-      left: 0;
-    }
-    100%{
-      left: -20vw; /* 텍스트 width와 동일 */
-    }
-  }
-  .scroll-text{
-    width: 100%;
-    float:right;
-    overflow: hidden;
-    color:white;
-  }
-  .track{
-    position: relative;
-    width: 120vw;
-    animation: scroll-animation 5s linear infinite;
-  }
-  .track p{
-    float: left;
-    width: 20vw;
-    font-size: 3.6vh;
-  }
   /*sns*/
 #sns{
     align-items: center;
@@ -33,7 +8,7 @@
     justify-content:space-evenly;
     position:relative; 
     margin:auto;
-    top:20%;
+    top:30%;
     width:50%;
     height:30vh;
     border:4px solid white;

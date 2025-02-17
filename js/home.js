@@ -13,7 +13,7 @@ function createPetal() {
 
     petal.style.left = `${startX}px`;
     petal.style.animationDuration = `${duration}s`;
-    petal.style.animationDelay = `-${delay}s`; // 자연스럽게 생성되도록
+    petal.style.animationDelay = `-${delay}s`;
 
     document.body.appendChild(petal);
 

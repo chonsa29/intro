@@ -1,4 +1,4 @@
-/* 전체 페이지 스타일 */
+/* 전체 페이지*/
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -7,7 +7,7 @@ body {
   color: #343a40;
 }
 
-/* 네비게이션 바 스타일 */
+/* 네비게이션 바*/
 nav {
   background-color: #007bff;
   padding: 10px 20px;
@@ -46,7 +46,7 @@ nav {
   border-radius: 5px;
 }
 
-/* 드롭다운 메뉴 스타일 */
+/*메뉴*/
 .dropdown .submenu {
   display: none;
   position: absolute;
@@ -82,12 +82,11 @@ nav {
   background: #f1f1f1;
 }
 
-/* 마우스를 올리면 드롭다운 메뉴 표시 */
 .dropdown:hover .submenu {
   display: block;
 }
 
-/* 홈 화면 및 게시판 스타일 */
+/* 홈 화면 및 게시판*/
 .container {
   display: flex;
   justify-content: space-between;
@@ -126,7 +125,7 @@ nav {
   margin-top: 20px;
 }
 
-/* 게시물 스타일 */
+/* 게시물*/
 .post {
   display: flex;
   justify-content: space-between;
@@ -154,7 +153,7 @@ nav {
   color: #6c757d;
 }
 
-/* 글쓰기 스타일 */
+/* 글쓰기*/
 .write-container {
   display: flex;
   flex-direction: column;
@@ -199,7 +198,7 @@ nav {
   background-color: #0056b3;
 }
 
-/* 게시글 상세 내용 스타일 */
+/* 게시글 상세 내용*/
 .post-detail {
   background-color: #ffffff;
   border-radius: 5px;
