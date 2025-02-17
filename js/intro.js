@@ -178,7 +178,12 @@ const Write = {
     </div>
   `,
   data() {
-    return { title: '', content: '', category: '' };
+    return {
+      title: '',
+      content: '',
+      category: '' ,
+      posts: []
+      };
   },
   methods: {
     methods: {
