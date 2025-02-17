@@ -1,169 +1,196 @@
-    /*페이지3,4,5*/ 
+    /*페이지3,4,5*/
 
-/*3페이지*/
-  /*sns*/
-#sns{
-    align-items: center;
-    display: flex;
-    justify-content:space-evenly;
-    position:relative; 
-    margin:auto;
-    top:30%;
-    width:50%;
-    height:30vh;
-    border:4px solid white;
-    border-radius:10px;
-    box-shadow:0px 0px 5px black;
-}
-.sns{
-    transition:transform 0.5s ease;
-    transform:translateZ(10px);
-}
-.sns:hover{
-    transform:scale(1.3);
-}
-
-/*4페이지*/
-#login{
-    border:4px solid white;
-    box-shadow:0px 0px 10px purple;
-    border-radius:8px;
-    width:40%;
-    height:30%;
-    margin:auto;
-    position:relative;
-    top:30%;
-}
-#loginTitle{
-    color:white;
-    text-shadow:0px 0px 10px purple;
-    font-size:30px;
-    font-weight:bolder;
-    display:inline-block;
-    position:relative;
-    top:33%;
-    left:30%;
-}
-#container{
-    width: 280px;
-    margin:auto;
-    margin-top:10%;
-}
-#container{
-    input{
-        float:right;
-        margin-top:3px;
-        color:black;
+    /*3페이지*/
+    /*sns*/
+    #sns {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+        margin: auto;
+        top: 30%;
+        width: 50%;
+        height: 30vh;
+        border: 4px solid white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px black;
     }
-    #id, #password{
-        margin: 10px 5px;
-        color:white;
-        font-weight:bold;
-        text-shadow: 1px 1px 3px purple;
-        font-size: 20px;
+
+    .sns {
+        transition: transform 0.5s ease;
+        transform: translateZ(10px);
     }
-}
-#button2{
-    text-align:center;
-}
-#button2{
-    button{
-        padding: 10px 15px;
-        margin: 10px 30px;
-        background-color:black;
-        border-style:none;
-        border-radius:6px;
-        color:white;
-        font-weight:bold;
-        font-size:15px;
+
+    .sns:hover {
+        transform: scale(1.3);
     }
-    button:hover{
-        cursor:pointer;
+
+    /*4페이지*/
+    #login {
+        border: 4px solid white;
+        box-shadow: 0px 0px 10px purple;
+        border-radius: 8px;
+        width: 40%;
+        height: 30%;
+        margin: auto;
+        position: relative;
+        top: 30%;
     }
-}
 
-/*나눔펜 글꼴*/
-#page2 {
-    font-family: "Nanum Pen Script", serif;
-    font-weight: 400;
-    font-style: normal;
-}  
+    #loginTitle {
+        color: white;
+        text-shadow: 0px 0px 10px purple;
+        font-size: 30px;
+        font-weight: bolder;
+        display: inline-block;
+        position: relative;
+        top: 33%;
+        left: 30%;
+    }
 
-/*페이지5*/
-.music-container {
-    width: 20vw;
-    position:absolute;
-    padding: 1vw;
-    padding-top:1.5vw;
-    top:10%;
-    left:40%;
-    z-index:1;
-}
-.music-container::after{
-    content:"";
-    width:100%;
-    height:100%;
-    background:#0B2559;
-    border-radius: 10px;
-    border:10px solid rgba(0,0,0,0.1);
-    box-shadow: 0 0 5px #F2C641;
-    position:absolute;
-    top:0;
-    left:-10px;
-    opacity:0.9;
-    z-index:-1;
-}
+    #container {
+        width: 280px;
+        margin: auto;
+        margin-top: 10%;
+    }
 
-.album-cover {
-    width: 100%;
-    height: 25vh;
-    background:#eee;
-    margin-bottom: 10px;
-}
-.audio-control {
-    background: #f0f0f0;
-    border-radius: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.playlist {
-    color:white;
-    text-align: left;
-    overflow:hidden;
-}
-#playlist{
-    margin:0;
-    height:0px;
-    transition: height 0.5s ease-in-out;
-}
-.playlist ul {
-    list-style: none;
-    padding: 0;
-}
-.playlist li {
-    padding: 1vw;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-}
-.playlist li:hover {
-    color:black;
-    background: #efefef;
-}
+    #container {
+        input {
+            float: right;
+            margin-top: 3px;
+            color: black;
+        }
 
-.songList{
-    width:0; 
-    height:0;
-    background-color:#eee;
-    border-radius:10px;
-    position:absolute;
-    top:10%;
-    left:40%;
-    text-align:center;
-    opacity:0;
-    transition:0.5s ease-in-out;
-}
-.song-cover{
-    margin:10% 5%;
-    width:90%;
-    height:40%;
-    border-radius:10px;
-}
+        #id,
+        #password {
+            margin: 10px 5px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px purple;
+            font-size: 20px;
+        }
+    }
+
+    #button2 {
+        text-align: center;
+    }
+
+    #button2 {
+        button {
+            padding: 10px 15px;
+            margin: 10px 30px;
+            background-color: black;
+            border-style: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+    }
+
+    /*나눔펜 글꼴*/
+    #page2 {
+        font-family: "Nanum Pen Script", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /*페이지5*/
+    .music-container {
+        width: 20vw;
+        position: absolute;
+        padding: 1vw;
+        padding-top: 1.5vw;
+        top: 10%;
+        left: 40%;
+        z-index: 1;
+    }
+
+    .music-container::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #0B2559;
+        border-radius: 10px;
+        border: 10px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 5px #F2C641;
+        position: absolute;
+        top: 0;
+        left: -10px;
+        opacity: 0.9;
+        z-index: -1;
+    }
+
+    .album-cover {
+        width: 100%;
+        height: 25vh;
+        background: #eee;
+        margin-bottom: 10px;
+    }
+
+    .audio-control {
+        background: #f0f0f0;
+        border-radius: 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .playlist {
+        color: white;
+        text-align: left;
+        overflow: hidden;
+    }
+
+    #playlist {
+        margin: 0;
+        height: 0px;
+        transition: height 0.5s ease-in-out;
+    }
+
+    .playlist ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .playlist li {
+        padding: 1vw;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+    }
+
+    .playlist li:hover {
+        color: black;
+        background: #efefef;
+    }
+
+    .songList {
+        width: 0;
+        height: 0;
+        background-color: #eee;
+        border-radius: 10px;
+        position: absolute;
+        top: 10%;
+        left: 40%;
+        text-align: center;
+        opacity: 0;
+        transition: 0.5s ease-in-out;
+    }
+
+    .song-cover {
+        margin: 10% 5%;
+        width: 90%;
+        height: 40%;
+        border-radius: 10px;
+    }
+
+    /*미디어 쿼리*/
+    @media screen and(max-width:425px) {
+        #sns {
+            flex-direction: column;
+            top: 20%;
+            height: 80%;
+        }
+    }
