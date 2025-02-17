@@ -37,17 +37,17 @@ Vue.component('nav-bar', {
 const Home = {
   template: `
     <div>
-      <nav-bar></nav-bar>
-      <h1>홈</h1>
+      <nav-bar></nav-bar><br><br><br>
+      <h1>&nbsp;&nbsp;홈</h1>
       <div class="container">
         <section class="photo-info">
           <div class="photo">
-            <img src="your_photo_url" alt="My Photo" />
+            <img src="../media/1.png" alt="My Photo" />
           </div>
           <div class="info">
-            <p>이름: 홍길동</p>
-            <p>생일: 1990-01-01</p>
-            <p>나이: 35</p>
+            <p>이름: 천상욱</p>
+            <p>생일: 2000-09-04</p>
+            <p>나이: 24</p>
             <p>성별: 남</p>
           </div>
         </section>
@@ -92,12 +92,12 @@ const Home = {
 const Board = {
   template: `
     <div>
-      <nav-bar></nav-bar>
-      <h1>게시판</h1>
+      <nav-bar></nav-bar><br><br><br>
+      <h1>&nbsp;&nbsp;게시판</h1>
       <div class="container">
         <section class="board-info">
           <div class="board-img">
-            <img src="your_board_image_url" alt="Board Image" />
+            <img src="../media/1.png" alt="Board Image" />
           </div>
           <div class="board-details">
             <p>게시판 설명</p>
@@ -142,8 +142,8 @@ const Board = {
 
 const Write = {
   template: `
-    <div class="write-container">
-      <h1 style="margin-top: 0;">글쓰기</h1>
+    <div class="write-container"><br><br><br>
+      <h1 style="margin-top: 0;">&nbsp;&nbsp;글쓰기</h1>
       <form @submit.prevent="submitPost">
         <input type="text" v-model="title" placeholder="제목을 입력하세요" required>
         <select v-model="category" required>
@@ -164,10 +164,12 @@ const Write = {
       if (!this.title || !this.content) {
         alert('제목과 내용을 입력하세요.');
         return;
+      }else{
+        alert('등록되었습니다!');
       }
       const posts = getPosts();
       savePosts([...posts, { id: Date.now(), title: this.title, content: this.content, category: this.category, views: 0 }]);
-      this.$router.push('/board');
+      this.$router.push('/board/free');
     }
   }
 };
@@ -231,13 +233,31 @@ const PostDetail = {
   }
 };
 
+//마이페이지 컴포넌트
+const MyPage = {
+  template:`
+    <div>
+      <nav-bar></nav-bar><br><br><br>
+      <h1>&nbsp;&nbsp;마이페이지</h1>
+      <div class="container">
+        <div class="my-img">
+          <img src="../media/1.png" alt="Photo" />
+          
+  `,
+  computed:{
+    posts(){
+      return  getPosts();
+    }
+  }
+};
 
 // VueRouter 설정
 const routes = [
   { path: '/', component: Home },
   { path: '/board/:category', component: Board }, // 카테고리에 따라 다른 게시판을 표시
   { path: '/write', component: Write },
-  { path: '/post/:id', component: PostDetail } // PostDetail 라우트 추가
+  { path: '/post/:id', component: PostDetail }, // PostDetail 라우트 추가
+  { path: '/mypage', component: MyPage }
 ];
 
 const router = new VueRouter({ routes });
