@@ -12,61 +12,60 @@
     <button onclick="addData()">데이터 추가</button>
     <button onclick="fetchData()">데이터 가져오기</button>
 
-    <script type="module" src="script.js"></script> <!-- script.js 파일 불러오기 -->
+    <script>
+        // ✅ Firebase SDK 불러오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    
+        // ✅ Firebase 설정 (Firebase 콘솔에서 복사한 정보 입력)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+    
+        // ✅ Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+    
+        // ✅ Firestore에 데이터 추가하는 함수
+        async function addData() {
+            try {
+                const docRef = await addDoc(collection(db, "users"), {
+                    name: "홍길동",
+                    age: 25,
+                    email: "hong@example.com",
+                    createdAt: new Date()
+                });
+                alert("데이터 추가 완료! 문서 ID: " + docRef.id);
+            } catch (e) {
+                console.error("오류 발생:", e);
+                alert("데이터 추가 실패!");
+            }
+        }
+    
+        // ✅ Firestore에서 데이터 가져오는 함수
+        async function fetchData() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "users"));
+                querySnapshot.forEach((doc) => {
+                    console.log(`${doc.id} =>`, doc.data());
+                });
+                alert("데이터 가져오기 완료! (콘솔에서 확인하세요)");
+            } catch (e) {
+                console.error("오류 발생:", e);
+                alert("데이터 가져오기 실패!");
+            }
+        }
+    
+        // ✅ 함수를 전역으로 설정 (HTML 버튼에서 실행 가능하게)
+        window.addData = addData;
+        window.fetchData = fetchData;
+    
+    </script>
 </body>
 
 </html>
-<script>
-    // ✅ Firebase SDK 불러오기
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-    // ✅ Firebase 설정 (Firebase 콘솔에서 복사한 정보 입력)
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT_ID.appspot.com",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    // ✅ Firebase 초기화
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // ✅ Firestore에 데이터 추가하는 함수
-    async function addData() {
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-                name: "홍길동",
-                age: 25,
-                email: "hong@example.com",
-                createdAt: new Date()
-            });
-            alert("데이터 추가 완료! 문서 ID: " + docRef.id);
-        } catch (e) {
-            console.error("오류 발생:", e);
-            alert("데이터 추가 실패!");
-        }
-    }
-
-    // ✅ Firestore에서 데이터 가져오는 함수
-    async function fetchData() {
-        try {
-            const querySnapshot = await getDocs(collection(db, "users"));
-            querySnapshot.forEach((doc) => {
-                console.log(`${doc.id} =>`, doc.data());
-            });
-            alert("데이터 가져오기 완료! (콘솔에서 확인하세요)");
-        } catch (e) {
-            console.error("오류 발생:", e);
-            alert("데이터 가져오기 실패!");
-        }
-    }
-
-    // ✅ 함수를 전역으로 설정 (HTML 버튼에서 실행 가능하게)
-    window.addData = addData;
-    window.fetchData = fetchData;
-
-</script>
