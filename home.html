@@ -183,33 +183,38 @@
 		<!--페이지5-->
 		<div id="page5" class="section">
 			<div id="app">
-				<div class="songList" v-bind:style="songList">
-					<div class="song-cover" v-bind:style="songCover"></div>
-					<div class="song-info">노래 제목:{{title}}</div>
-					<div class="song-info">가수:{{singer}}</div>
-					<div class="song-info">info:{{inf}}</div>
-
+			  <div class="songList" v-bind:style="songList">
+				<div class="song-cover" v-bind:style="songCover"></div>
+				<div class="song-info">노래 제목:{{title}}</div>
+				<div class="song-info">가수:{{singer}}</div>
+				<div class="song-info">info:{{inf}}</div>
+			  </div>
+			  <div class="music-container">
+				<div class="album-cover" v-bind:style="albumCover"></div>
+				<div class="audio-control">
+				  <div class="controls">
+					<button @click="prevSong">⏮</button>
+					<button @click="togglePlay">{{ isPlaying ? '⏸' : '▶' }}</button>
+					<button @click="nextSong">⏭</button>
+				  </div>
+				  <div class="progress-container" @click="setProgress">
+					<div class="progress-bar" ref="progressBar"></div>
+				  </div>
+				  <audio ref="audioPlayer" @timeupdate="updateProgress" @ended="nextSong"></audio>
 				</div>
-				<div class="music-container">
-					<div class="album-cover" v-bind:style="albumCover"></div>
-					<div class="audio-control">
-						<audio controls ref="audioPlayer" v-bind:src="source.link"></audio>
-					</div>
-					<div class="playlist">
-						<span onclick="togglePlaylist()" style="cursor: pointer;font-size:50px;margin-top:2vh;"
-							class="material-symbols-outlined">
-							list
-						</span>
-						<ul id="playlist">
-							<li v-for="i in arr"
-								@mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)"
-								@click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}
-							</li>
-						</ul>
-					</div>
-				</div>`
+				<div class="playlist">
+				  <span onclick="togglePlaylist()" style="cursor: pointer; font-size:50px; margin-top:2vh;" class="material-symbols-outlined">
+					list
+				  </span>
+				  <ul id="playlist">
+					<li v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" @click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}</li>
+				  </ul>
+				</div>
+			  </div>
 			</div>
-		</div>
+		  </div>
+		  
+		  
 	</div>
 </body>
 

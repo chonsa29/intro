@@ -332,111 +332,138 @@ function togglePlaylist() {
         playlist.style.height = "0px";
     }
 }
+
 var app = new Vue({
-    el: '#app',
-
-    data: {
-        title: "",
-        singer: "",
-        inf: "",
-        songCover: {
-            background: "black",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-        },
-        songList: {
-            width: "",
-            height: "",
-            left: "",
-            opacity: ""
-        },
-        albumCover: {
-            background: "",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-        },
-        source: {
-            link: ""
-        },
-        arr: [
-            {
-                song: {
-                    title: "노래1",
-                    singer: "가수1",
-                    info: "설명1",
-                    background: "url(\"./media/song1.jpg\")",
-                    link: "./media/song1.mp3",
-                }
-            },
-            {
-                song: {
-                    title: "노래2",
-                    singer: "가수2",
-                    info: "설명2",
-                    background: "url(\"./media/song2.jpg\")",
-                    link: "./media/song2.mp3",
-                }
-            },
-            {
-                song: {
-                    title: "노래3",
-                    singer: "가수3",
-                    info: "설명3",
-                    background: "orange",
-                    link: "./media/song3.mp3",
-                }
-            },
-            {
-                song: {
-                    title: "노래4",
-                    singer: "가수4",
-                    info: "설명4",
-                    background: "yellow",
-                    link: "./media/song4.mp3",
-                }
-            },
-            {
-                song: {
-                    title: "노래5",
-                    singer: "가수5",
-                    info: "설명5",
-                    background: "green",
-                    link: "./media/song5.mp3",
-                }
-            }
-        ]
+  el: '#app',
+  data: {
+    title: "",
+    singer: "",
+    inf: "",
+    songCover: {
+      background: "black",
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
     },
-    methods: {
-        info: function (title, singer, inf, background) {
-            this.title = title
-            this.singer = singer
-            this.inf = inf
-            this.songCover.background = background
-            this.songList.width = "15vw"
-            this.songList.height = "60vh"
-            this.songList.left = "23%"
-            this.songList.opacity = "1"
-
-        },
-        mouseout: function () {
-            this.songList.width = ""
-            this.songList.height = ""
-            this.songList.left = ""
-            this.songList.opacity = ""
-        },
-        changeSong: function (background, link) {
-            this.albumCover.background = background
-            this.source.link = link
-            this.$refs.audioPlayer.play();
-            this.$nextTick(() => {
-                if (this.$refs.audioPlayer) {
-                    this.$refs.audioPlayer.play();
-                } else {
-                    console.error("audioPlayer 참조가 없습니다!");
-                }
-            });
+    songList: {
+      width: "",
+      height: "",
+      left: "",
+      opacity: ""
+    },
+    albumCover: {
+      background: "",
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center"
+    },
+    source: {
+      link: ""
+    },
+    isPlaying: false,
+    currentSongIndex: 0,
+    arr: [
+      {
+        song: {
+          title: "노래1",
+          singer: "가수1",
+          info: "설명1",
+          background: "url(\"./media/song1.jpg\")",
+          link: "./media/song1.mp3",
         }
-    }//methods
+      },
+      {
+        song: {
+          title: "노래2",
+          singer: "가수2",
+          info: "설명2",
+          background: "url(\"./media/song2.jpg\")",
+          link: "./media/song2.mp3",
+        }
+      },
+      {
+        song: {
+          title: "노래3",
+          singer: "가수3",
+          info: "설명3",
+          background: "orange",
+          link: "./media/song3.mp3",
+        }
+      },
+      {
+        song: {
+          title: "노래4",
+          singer: "가수4",
+          info: "설명4",
+          background: "yellow",
+          link: "./media/song4.mp3",
+        }
+      },
+      {
+        song: {
+          title: "노래5",
+          singer: "가수5",
+          info: "설명5",
+          background: "green",
+          link: "./media/song5.mp3",
+        }
+      }
+    ]
+  },
+  methods: {
+    info: function (title, singer, inf, background) {
+      this.title = title;
+      this.singer = singer;
+      this.inf = inf;
+      this.songCover.background = background;
+      this.songList.width = "15vw";
+      this.songList.height = "60vh";
+      this.songList.left = "23%";
+      this.songList.opacity = "1";
+    },
+    mouseout: function () {
+      this.songList.width = "";
+      this.songList.height = "";
+      this.songList.left = "";
+      this.songList.opacity = "";
+    },
+    changeSong: function (background, link, index) {
+      this.albumCover.background = background;
+      this.source.link = link;
+      this.currentSongIndex = index;
+      this.$refs.audioPlayer.src = link;
+      this.$refs.audioPlayer.play();
+      this.isPlaying = true;
+    },
+    togglePlay: function () {
+      if (this.$refs.audioPlayer.paused) {
+        this.$refs.audioPlayer.play();
+        this.isPlaying = true;
+      } else {
+        this.$refs.audioPlayer.pause();
+        this.isPlaying = false;
+      }
+    },
+    setProgress: function (event) {
+      const width = this.$refs.progressBar.parentElement.offsetWidth;
+      const clickX = event.offsetX;
+      const duration = this.$refs.audioPlayer.duration;
+      this.$refs.audioPlayer.currentTime = (clickX / width) * duration;
+    },
+    updateProgress: function () {
+      const progressBar = this.$refs.progressBar;
+      const duration = this.$refs.audioPlayer.duration;
+      const currentTime = this.$refs.audioPlayer.currentTime;
+      progressBar.style.width = (currentTime / duration) * 100 + '%';
+    },
+    prevSong: function () {
+      this.currentSongIndex = (this.currentSongIndex - 1 + this.arr.length) % this.arr.length;
+      const song = this.arr[this.currentSongIndex].song;
+      this.changeSong(song.background, song.link, this.currentSongIndex);
+    },
+    nextSong: function () {
+      this.currentSongIndex = (this.currentSongIndex + 1) % this.arr.length;
+      const song = this.arr[this.currentSongIndex].song;
+      this.changeSong(song.background, song.link, this.currentSongIndex);
+    }
+  }
 });
-

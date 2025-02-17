@@ -18,22 +18,22 @@ body {
 }
 
 #page2 {
-    background: linear-gradient(180deg, black, #fff6a5);
+    background: linear-gradient(180deg, black, #727272);
     z-index: 0;
 }
 
 #page3 {
-    background: linear-gradient(180deg, #fff6a5, #ff71ff);
+    background: linear-gradient(180deg, #727272, #9789ff);
     z-index: 0;
 }
 
 #page4 {
-    background: linear-gradient(180deg, #ff71ff, #b5b2ff);
+    background: linear-gradient(180deg, #9789ff, #eeb2ff);
     z-index: 0;
 }
 
 #page5 {
-    background: linear-gradient(180deg, #b5b2ff, #f7d982);
+    background: linear-gradient(180deg, #eeb2ff, #f7d982);
     z-index: 0;
 }
 
