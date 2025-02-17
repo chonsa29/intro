@@ -119,7 +119,7 @@ function loading() {
 
         loading1();
         loading2();
-    }, 0);
+    }, 2000);
 }
 function loading1() {
     a.style.transform = "translateX(-120%)";
