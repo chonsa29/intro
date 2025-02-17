@@ -1,11 +1,32 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+// ✅ Firebase 설정 (Firebase 콘솔에서 복사한 정보 입력)
+const firebaseConfig = {
+  apiKey: "AIzaSyBJEslN7lCVRPFBQlLPmoCvHBtHmyAbxr0",
+  authDomain: "intro-ce7c2.firebaseapp.com",
+  projectId: "intro-ce7c2",
+  storageBucket: "intro-ce7c2.firebasestorage.app",
+  messagingSenderId: "52941824344",
+  appId: "1:52941824344:web:917e0834257d6d9d23452d",
+  measurementId: "G-E4ZH77NP5T"
+};
+
+// ✅ Firebase 초기화
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
 // 유틸 함수 정의
-function getPosts() {
-  return JSON.parse(localStorage.getItem('posts')) || [];
+async function getPosts() {
+  const querySnapshot = await getDocs(collection(db, "posts"));
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
-function savePosts(posts) {
-  localStorage.setItem('posts', JSON.stringify(posts));
+async function savePost(post) {
+  await addDoc(collection(db, "posts"), post);
 }
+
 // 네비게이션 바
 Vue.component('nav-bar', {
   template: `
@@ -124,14 +145,14 @@ const Board = {
     </div>
   `,
   computed: {
-    posts() {
-      return getPosts();
+    async posts() {
+      return await getPosts();
     },
-    freeBoard() {
-      return this.posts.filter(post => post.category === '자유게시판');
+    async freeBoard() {
+      return (await this.posts).filter(post => post.category === '자유게시판');
     },
-    noticeBoard() {
-      return this.posts.filter(post => post.category === '공지사항');
+    async noticeBoard() {
+      return (await this.posts).filter(post => post.category === '공지사항');
     }
   }
 };
@@ -160,16 +181,25 @@ const Write = {
     return { title: '', content: '', category: '' };
   },
   methods: {
-    submitPost() {
-      if (!this.title || !this.content) {
-        alert('제목과 내용을 입력하세요.');
-        return;
-      }else{
+    methods: {
+      async submitPost() {
+        if (!this.title || !this.content) {
+          alert('제목과 내용을 입력하세요.');
+          return;
+        }
+
+        const newPost = {
+          title: this.title,
+          content: this.content,
+          category: this.category,
+          views: 0,
+          createdAt: new Date()
+        };
+
+        await savePost(newPost);
         alert('등록되었습니다!');
+        this.$router.push('/board/free');
       }
-      const posts = getPosts();
-      savePosts([...posts, { id: Date.now(), title: this.title, content: this.content, category: this.category, views: 0 }]);
-      this.$router.push('/board/free');
     }
   }
 };
@@ -212,9 +242,9 @@ const PostDetail = {
     }
   },
   methods: {
-    updateViews() {
-      const posts = this.posts.map(p => (p.id === this.post.id ? { ...p, views: p.views + 1 } : p));
-      savePosts(posts);
+    async updateViews() {
+      const postRef = doc(db, "posts", this.post.id);
+      await updateDoc(postRef, { views: this.post.views + 1 });
     },
     editPost() {
       this.isEditing = true;
@@ -235,7 +265,7 @@ const PostDetail = {
 
 //마이페이지 컴포넌트
 const MyPage = {
-  template:`
+  template: `
     <div>
       <nav-bar></nav-bar><br><br><br>
       <h1>&nbsp;&nbsp;마이페이지</h1>
@@ -244,9 +274,9 @@ const MyPage = {
           <img src="../media/1.png" alt="Photo" />
           
   `,
-  computed:{
-    posts(){
-      return  getPosts();
+  computed: {
+    posts() {
+      return getPosts();
     }
   }
 };
