@@ -15,7 +15,6 @@
         border-radius: 10px;
         box-shadow: 0px 0px 5px black;
     }
-
     .sns {
         transition: transform 0.5s ease;
         transform: translateZ(10px);
@@ -132,11 +131,6 @@
         margin-bottom: 10px;
     }
 
-    .audio-control {
-        background: #f0f0f0;
-        border-radius: 30px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
 
     .playlist {
         color: white;
@@ -177,7 +171,7 @@
         text-align: center;
         opacity: 0;
         transition: 0.5s ease-in-out;
-    }
+    }   
 
     .song-cover {
         margin: 10% 5%;
@@ -186,11 +180,40 @@
         border-radius: 10px;
     }
 
-    /*미디어 쿼리*/
-    @media screen and(max-width:425px) {
+    @media screen and (max-width:425px) {
         #sns {
             flex-direction: column;
             top: 20%;
-            height: 80%;
+            height: 60%;
         }
+        #login {
+            width: 80%;
+            height: 20%;
+            top: 30%;
+        }
+        #loginTitle {
+            top: 33%;
+            left: 12%;
+        }
+        .music-container {
+            width: 30vh;
+            position: absolute;
+            padding: 1vw;
+            padding-top: 1.5vh;
+            top: 0%;
+            left: 20%;
+            z-index: 1;
+        }
+        .playlist li {
+            padding: 1vh;
+        }
+
+        .songList {
+            width: 0;
+            height: 0;
+            display:none;
+        }   
     }
+
+
+
