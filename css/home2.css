@@ -91,13 +91,6 @@
         }
     }
 
-    /*나눔펜 글꼴*/
-    #page2 {
-        font-family: "Nanum Pen Script", serif;
-        font-weight: 400;
-        font-style: normal;
-    }
-
     /*페이지5*/
     .music-container {
         width: 20vw;

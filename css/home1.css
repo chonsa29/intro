@@ -18,22 +18,22 @@ body {
 }
 
 #page2 {
-    background: linear-gradient(180deg, black, #b4035c);
+    background: linear-gradient(180deg, black, #fff6a5);
     z-index: 0;
 }
 
 #page3 {
-    background: linear-gradient(180deg, #b4035c, #800080);
+    background: linear-gradient(180deg, #fff6a5, #ff71ff);
     z-index: 0;
 }
 
 #page4 {
-    background: linear-gradient(180deg, #800080, #0D05F2);
+    background: linear-gradient(180deg, #ff71ff, #b5b2ff);
     z-index: 0;
 }
 
 #page5 {
-    background: linear-gradient(180deg, #0D05F2, #F2C641);
+    background: linear-gradient(180deg, #b5b2ff, #f7d982);
     z-index: 0;
 }
 
@@ -54,7 +54,7 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
-    opacity: 0.2;
+    opacity: 0.1;
 }
 
 /*로딩 화면*/
@@ -297,10 +297,16 @@ nav li:hover .nav-text {
     text-align: center;
     padding: 2% 1%;
     border-radius: 10px;
-    border: 4px solid black;
-    box-shadow: 0 3px 10px black;
+    border: 4px solid #D3D3D3;
+    box-shadow: 0 3px 10px #ADD8E6;
     font-size: 3vh;
     animation: floating 3s ease-in-out infinite;
+    color: #444444;
+    font-family: "Noto Sans KR", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
 }
 
 #icon {
@@ -318,25 +324,29 @@ nav li:hover .nav-text {
 
 #name {
     margin-top: 5%;
-    font-size: 5vh;
+    font-size: 3.5vh;
     font-weight: bold;
+    color: black;
 }
 
 #detail {
-    font-size: 3vh;
     margin-top: 20%;
 }
 
 /*사이드바 모드*/
 .side_dark {
     background-color: #222;
-    color: white;
+    #name{
+        color:white;
+    }
+    #detail{
+        color:white;
+    }
 
 }
 
 .side_light {
-    background-color: white;
-    color: black;
+    background-color: #FFF8E7;
 }
 
 /*내용*/
@@ -349,14 +359,16 @@ nav li:hover .nav-text {
     padding: 2% 1%;
     text-align: center;
     border-radius: 10px;
-    border: 4px solid black;
-    box-shadow: 0 0 10px black;
+    border: 4px solid #D3D3D3;
+    box-shadow: 0 0 10px #B0B0B0;
     font-size: 2.5vh;
 }
 
 #introTitle {
     display: inline-block;
     width: 50%;
+    color: black;
+    font-size: 3.5vh;
 }
 
 .button1:hover {
@@ -371,8 +383,10 @@ nav li:hover .nav-text {
 
 #contents {
     padding: 0% 10%;
-    text-align: left;
-    font-size: 2.5vh;
+    text-align: justify;
+    font-size: 2.2vh;
+    color: #444444;
+    line-height:4vh;
 }
 
 #contents {
@@ -386,6 +400,8 @@ nav li:hover .nav-text {
     display: inline-block;
     font-size: 35px;
     width: 100px;
+    color: #444444;
+    font-size: 3vh;
 }
 
 .introBtn:hover {
@@ -395,8 +411,16 @@ nav li:hover .nav-text {
 /*내용 모드*/
 .content_dark {
     background-color: #222;
-    color: white;
 
+    #contents {
+        color: white;
+    }
+    #introTitle{
+        color:white;
+    }
+    .introBtn{
+        color:white;
+    }
     thead {
         background-color: rgb(89, 0, 255);
     }
@@ -405,11 +429,16 @@ nav li:hover .nav-text {
         background-color: gray;
         color: white;
     }
+    #modeTxt{
+        color:white;
+    }
+    #pageNo{
+        color:white;
+    }
 }
 
 .content_light {
-    background-color: white;
-    color: black;
+    background-color: #FFF8E7;
 }
 
 /*모드 전환 이미지*/
@@ -437,7 +466,7 @@ nav li:hover .nav-text {
     position: absolute;
     right: 4vw;
     bottom: 1vh;
-    font-size: 3.5vh;
+    font-size: 3vh;
     font-weight: bold;
 }
 

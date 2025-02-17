@@ -171,7 +171,7 @@ nav {
 .write-container input,
 .write-container select,
 .write-container textarea {
-  width: 100%;
+  width: 99%;
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -199,16 +199,17 @@ nav {
 }
 
 /* 게시글 상세 내용*/
+
 .post-detail {
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px 0;
+  margin:50px 0;
 }
 
 .post-detail h1 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
@@ -242,4 +243,117 @@ nav {
 
 .post-detail .post-actions button:hover {
   background-color: #0056b3;
+}
+.edit-form{
+  display:flex;
+  justify-content: center;
+}
+.edit-form input{
+  margin-top:100px;
+  margin-bottom: 50px;
+  width:500px;
+  display:block;
+}
+.edit-form textarea{
+  margin-bottom:50px;
+  height:200px;
+  width:500px;
+  display:block;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-section {
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-info {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.post-votes {
+  margin-top: 20px;
+}
+
+.post-votes button {
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.post-votes button:hover {
+  background-color: #45a049;
+}
+.container2 input[type="text"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.post-details {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.post-likes,
+.post-dislikes {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Board.vue */
+.post-details {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.post-likes,
+.post-dislikes {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
 }

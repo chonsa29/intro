@@ -24,7 +24,7 @@ function createPetal() {
 }
 
 function createPetals() {
-    setInterval(createPetal, 150); // 0.3초마다 새로운 벚꽃 생성
+    setInterval(createPetal, 150); 
 }
 
 createPetals();
@@ -192,8 +192,15 @@ function changePage() {
     if (pageNo.innerHTML == 1) {
         introTitle.innerHTML = "자기소개";
         let text = document.createElement("p");
-        text.innerHTML = "저는 문제 해결과 논리적인 사고를 바탕으로 성장하는 개발자가 되고 싶어 소프트웨어 개발을 공부하게 되었습니다." +
-            " 비록 실무 경험은 부족하지만, 꾸준한 학습과 도전을 통해 빠르게 성장할 자신이 있습니다.";
+        text.innerHTML = "신입 풀스택 개발자 천상욱입니다." +
+                        "웹 개발에 대한 열정과 지속적인 학습을 바탕으로 프론트엔드와 백엔드를 아우르는 풀스택 개발자로 성장하고 있습니다."+
+                        "현재까지 다양한 코딩 테스트를 통해 알고리즘 및 문제 해결 능력을 키워왔으며, 실무 프로젝트 경험을 쌓기 위해 적극적으로 학습하고 있습니다."+
+                        "프론트엔드에서는 HTML, CSS, JavaScript를 활용한 웹 페이지 제작에 관심이 있으며,"+
+                        "React와 같은 라이브러리를 익히며 사용자 친화적인 UI를 구현하는 데 집중하고 있습니다."+
+                        "백엔드에서는 Node.js, Express, MySQL 등을 활용하여 서버 구축 및 데이터베이스 설계에 대해 공부하고 있습니다."+
+                        "아직 실무 경험은 부족하지만, 새로운 기술을 배우고 적용하는 것을 즐기며,"+
+                        "팀워크와 원활한 커뮤니케이션을 통해 성장하는 개발자가 되고자 합니다. 끊임없이 도전하며,"+
+                        "사용자에게 가치 있는 서비스를 제공하는 개발자로 나아가겠습니다.";
         contents.appendChild(text);
     } else if (pageNo.innerHTML == 2) {
         introTitle.innerHTML = "Experience";

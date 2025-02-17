@@ -1,72 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Firestore 연동</title>
+    <title>Document</title>
 </head>
-
 <body>
-    <h1>Firestore 테스트</h1>
-    <button onclick="addData()">데이터 추가</button>
-    <button onclick="fetchData()">데이터 가져오기</button>
-
-    <script type="module">
-        // ✅ Firebase SDK 불러오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        // ✅ Firebase 설정 (Firebase 콘솔에서 복사한 정보 입력)
-        const firebaseConfig = {
-            apiKey: "AIzaSyBJEslN7lCVRPFBQlLPmoCvHBtHmyAbxr0",
-            authDomain: "intro-ce7c2.firebaseapp.com",
-            projectId: "intro-ce7c2",
-            storageBucket: "intro-ce7c2.firebasestorage.app",
-            messagingSenderId: "52941824344",
-            appId: "1:52941824344:web:917e0834257d6d9d23452d",
-            measurementId: "G-E4ZH77NP5T"
-        };
-
-        // ✅ Firebase 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // ✅ Firestore에 데이터 추가하는 함수
-        async function addData() {
-            try {
-                const docRef = await addDoc(collection(db, "users"), {
-                    name: "홍길동",
-                    age: 25,
-                    email: "hong@example.com",
-                    createdAt: new Date()
-                });
-                alert("데이터 추가 완료! 문서 ID: " + docRef.id);
-            } catch (e) {
-                console.error("오류 발생:", e);
-                alert("데이터 추가 실패!");
-            }
-        }
-
-        // ✅ Firestore에서 데이터 가져오는 함수
-        async function fetchData() {
-            try {
-                const querySnapshot = await getDocs(collection(db, "users"));
-                querySnapshot.forEach((doc) => {
-                    console.log(`${doc.id} =>`, doc.data());
-                });
-                alert("데이터 가져오기 완료! (콘솔에서 확인하세요)");
-            } catch (e) {
-                console.error("오류 발생:", e);
-                alert("데이터 가져오기 실패!");
-            }
-        }
-
-        // ✅ 함수를 전역으로 설정 (HTML 버튼에서 실행 가능하게)
-        window.addData = addData;
-        window.fetchData = fetchData;
-
-    </script>
+    <v-btn
+    @click="
+      play(
+        'http://www.hochmuth.com/mp3/Boccherini_Concerto_478-1.mp3'
+      )
+    "
+  >
 </body>
-
 </html>
