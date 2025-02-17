@@ -176,7 +176,7 @@ body {
 }
 
 .overlay {
-    height: 10vh;
+    max-height: 15vh;
     line-height: 10vh;
     margin: 0 auto;
     max-width: 55vw;
@@ -509,7 +509,7 @@ td {
     nav {
         position: fixed;
         top: 0%;
-        right: 13%;
+        right: 2vw;
         transform: translateY(0%);
         z-index: 1;
     }
