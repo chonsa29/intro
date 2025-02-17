@@ -230,7 +230,7 @@ const PostDetail = {
     </div>
   `,
   data() {
-    return { post: {}, isEditing: false, editTitle: '', editContent: '' };
+    return { post: {}, isEditing: false, editTitle: '', editContent: '' , posts:[]};
   },
   computed: {
     posts() {
