@@ -215,10 +215,10 @@ function changePage() {
         ul1.innerHTML = "프론트엔드";
         ul2.innerHTML = "백엔드";
         li1_1.innerHTML = "HTML/CSS/JAVASCRIPT";
-        li1_2.innerHTML = "웹 페이지 못 만든다";
-        li1_3.innerHTML = "다 못함...";
-        li2_1.innerHTML = "자바 조금함";
-        li2_2.innerHTML = "오라클도 조금 함";
+        li1_2.innerHTML = "웹 페이지 조금 만들 줄 앎";
+        li1_3.innerHTML = "열심히 하는중";
+        li2_1.innerHTML = "자바 100점맞음 ㅎㅎ";
+        li2_2.innerHTML = "오라클 잘함(아마도)";
         contents.appendChild(ul1);
         contents.appendChild(ul2);
         ul1.appendChild(li1_1);
@@ -231,13 +231,13 @@ function changePage() {
         introTitle.innerHTML = "보유 기술";
         contents.innerHTML = "<ul>" +
             "<li>자바<br>" +
-            "<progress class=\"progress\" value=\"10\" min=\"0\" max=\"100\"></progress>" +
+            "<progress class=\"progress\" value=\"80\" min=\"0\" max=\"100\"></progress>" +
             "<li>오라클<br>" +
-            "<progress class=\"progress\" value=\"15\" min=\"0\" max=\"100\"></progress>" +
+            "<progress class=\"progress\" value=\"70\" min=\"0\" max=\"100\"></progress>" +
             "<li>HTML<br>" +
-            "<progress class=\"progress\" value=\"5\" min=\"0\" max=\"100\"></progress>" +
+            "<progress class=\"progress\" value=\"60\" min=\"0\" max=\"100\"></progress>" +
             "<li>C++<br>" +
-            "<progress class=\"progress\" value=\"50\" min=\"0\" max=\"100\"></progress>"
+            "<progress class=\"progress\" value=\"90\" min=\"0\" max=\"100\"></progress>"
             ;
     } else if (pageNo.innerHTML == 4) {
         introTitle.innerHTML = "Education";
