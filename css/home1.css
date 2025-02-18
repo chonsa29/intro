@@ -311,7 +311,7 @@ nav li:hover .nav-text {
 
 #icon {
     margin-left: 25%;
-    background-image: url("../media/icon.png");
+    background-image: url("../media/icon.jpg");
     width: 10vw;
     height: 20vh;
     background-size: cover;
@@ -319,7 +319,7 @@ nav li:hover .nav-text {
 }
 
 #icon:hover {
-    background-image: url("../media/1.png");
+    background-image: url("../media/icon.png");
 }
 
 #name {
