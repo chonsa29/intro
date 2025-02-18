@@ -59,7 +59,6 @@ const Home = {
       <div class="container">
         <section class="photo-info">
           <div class="photo">
-            <img src="../media/1.png" alt="My Photo" />
           </div>
           <div class="info">
             <p>이름: 천상욱</p>
@@ -127,7 +126,6 @@ const Board = {
     <div class="container">
       <section class="board-info">
         <div class="board-img">
-          <img src="../media/1.png" alt="Board Image" />
         </div>
         <div class="board-details">
           <p>게시판 설명</p>
