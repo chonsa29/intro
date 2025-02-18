@@ -50,6 +50,8 @@ Vue.component('nav-bar', {
         <li><router-link to="/" class="lists">홈</router-link></li>
         <li><router-link to="/board" class="lists">게시판</router-link>
           <ul class="sub-menu">
+            <li><router-link to="/board/notice" style="text-decoration:none;color:black;">공지사항</router-link></li>
+            <li><router-link to="/board/free" style="text-decoration:none;color:black;">자유게시판</router-link></li>
           </ul>
         </li>
         <li><router-link to="/write" class="lists">글쓰기</router-link></li>
@@ -87,11 +89,12 @@ const Home = {
         <h2>최근 추가된 글</h2>
         <ul>
           <li v-for="post in sortedPosts" :key="post.id" class="post">
-            <router-link :to="'/post/' + post.id">{{ post.title }}</router-link>
+            <router-link :to="'/post/' + post.id">{{ post.category}} - {{post.title}}</router-link>
             <div class="post-details">
               <div class="post-views">조회수: {{ post.views }}</div>
               <div class="post-likes">👍 {{ post.likes }}</div>
               <div class="post-dislikes">👎 {{ post.dislikes }}</div>
+              <div class="post-createdAt">{{formatDate(post.createdAt)}}</div>
             </div>
           </li>
         </ul>
@@ -103,6 +106,7 @@ const Home = {
               <div class="post-views">조회수: {{ post.views }}</div>
               <div class="post-likes">👍 {{ post.likes }}</div>
               <div class="post-dislikes">👎 {{ post.dislikes }}</div>
+              <div class="post-createdAt">{{formatDate(post.createdAt)}}</div>
             </div>
           </li>
         </ul>
@@ -129,6 +133,15 @@ const Home = {
         .sort((a, b) => b.views - a.views)
         .slice(0, 5);
     }
+  },
+  methods: {
+    formatDate(timestamp) {
+      const date = timestamp.toDate();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
   }
 };
 
@@ -148,6 +161,14 @@ const Board = {
         </div>
       </section>
       <section class="main-content">
+       <div>
+        <select v-model="pageSize">
+          <option value="5">5개씩</option>
+          <option value="10">10개씩</option>
+          <option value="15">15개씩</option>
+          <option value="20">20개씩</option>
+        </select>
+      </div>
         <ul>
           <li v-for="post in paginatedPosts" :key="post.id" class="post">
             <router-link :to="'/post/' + post.id">{{ post.category }} - {{ post.title }}</router-link>
@@ -155,6 +176,7 @@ const Board = {
               <div class="post-views">조회수: {{ post.views }}</div>
               <div class="post-likes">👍 {{ post.likes }}</div>
               <div class="post-dislikes">👎 {{ post.dislikes }}</div>
+              <div class="post-createdAt">{{formatDate(post.createdAt)}}</div>
             </div>
           </li>
         </ul>
@@ -171,7 +193,7 @@ const Board = {
     return {
       posts: [],
       page: 1,
-      pageSize: 8
+      pageSize: 10
     };
   },
   async created() {
@@ -200,11 +222,196 @@ const Board = {
       if (this.page > 1) {
         this.page--;
       }
+    },
+    formatDate(timestamp) {
+      const date = timestamp.toDate();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
     }
   }
 };
 
+//자유게시판 컴포넌트
+const BoardFree = {
+  template: `
+  <div>
+    <nav-bar></nav-bar><br><br><br>
+    <h1>&nbsp;&nbsp;자유게시판 </h1>
+    <div class="container">
+      <section class="board-info">
+        <div class="board-img">
+        </div>
+        <div class="board-details">
+          <p>게시판 설명</p>
+          <p>게시판 규칙</p>
+        </div>
+      </section>
+      <section class="main-content">
+      <div>
+        <select v-model="pageSize">
+          <option value="5">5개씩</option>
+          <option value="10">10개씩</option>
+          <option value="15">15개씩</option>
+          <option value="20">20개씩</option>
+        </select>
+      </div>
+        <ul>
+          <li v-for="post in paginatedPosts" :key="post.id" class="post">
+            <router-link :to="'/post/' + post.id">{{ post.category }} - {{ post.title }}</router-link>
+            <div class="post-details">
+              <div class="post-views">조회수: {{ post.views }}</div>
+              <div class="post-likes">👍 {{ post.likes }}</div>
+              <div class="post-dislikes">👎 {{ post.dislikes }}</div>
+              <div class="post-createdAt">{{formatDate(post.createdAt)}}</div>
+            </div>
+          </li>
+        </ul>
+        <div class="pagination">
+          <button @click="prevPage" :disabled="page === 1">이전</button>
+          <span>{{ page }} / {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="page === totalPages">다음</button>
+        </div>
+      </section>
+    </div>
+  </div>
+  `,
+  data() {
+    return {
+      posts: [],
+      page: 1,
+      pageSize: 5
+    };
+  },
+  async created() {
+    this.posts = await getPosts();
+  },
+  computed: {
+    sortedPosts() {
+      return [...this.posts]
+      .filter(post => post.category == '자유게시판')
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    },
+    paginatedPosts() {
+      const start = (this.page - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.sortedPosts.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.sortedPosts.length / this.pageSize);
+    }
+  },
+  methods: {
+    nextPage() {
+      if (this.page < this.totalPages) {
+        this.page++;
+      }
+    },
+    prevPage() {
+      if (this.page > 1) {
+        this.page--;
+      }
+    },
+    formatDate(timestamp) {
+      const date = timestamp.toDate();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+  }
+};
 
+//공지사항 컴포넌트
+const BoardNotice = {
+  template: `
+  <div>
+    <nav-bar></nav-bar><br><br><br>
+    <h1>&nbsp;&nbsp;공지사항</h1>
+    <div class="container">
+      <section class="board-info">
+        <div class="board-img">
+        </div>
+        <div class="board-details">
+          <p>게시판 설명</p>
+          <p>게시판 규칙</p>
+        </div>
+      </section>
+      <section class="main-content">
+      <div>
+        <select v-model="pageSize">
+          <option value="5">5개씩</option>
+          <option value="10">10개씩</option>
+          <option value="15">15개씩</option>
+          <option value="20">20개씩</option>
+        </select>
+      </div>
+        <ul>
+          <li v-for="post in paginatedPosts" :key="post.id" class="post">
+            <router-link :to="'/post/' + post.id">{{ post.category }} - {{ post.title }}</router-link>
+            <div class="post-details">
+              <div class="post-views">조회수: {{ post.views }}</div>
+              <div class="post-likes">👍 {{ post.likes }}</div>
+              <div class="post-dislikes">👎 {{ post.dislikes }}</div>
+              <div class="post-createdAt">{{formatDate(post.createdAt)}}</div>
+            </div>
+          </li>
+        </ul>
+        <div class="pagination">
+          <button @click="prevPage" :disabled="page === 1">이전</button>
+          <span>{{ page }} / {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="page === totalPages">다음</button>
+        </div>
+      </section>
+    </div>
+  </div>
+  `,
+  data() {
+    return {
+      posts: [],
+      page: 1,
+      pageSize: 5
+    };
+  },
+  async created() {
+    this.posts = await getPosts();
+  },
+  computed: {
+    sortedPosts() {
+      return [...this.posts]
+      .filter(post => post.category == '공지사항')
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    },
+    paginatedPosts() {
+      const start = (this.page - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.sortedPosts.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.sortedPosts.length / this.pageSize);
+    }
+  },
+  methods: {
+    nextPage() {
+      if (this.page < this.totalPages) {
+        this.page++;
+      }
+    },
+    prevPage() {
+      if (this.page > 1) {
+        this.page--;
+      }
+    },
+    formatDate(timestamp) {
+      const date = timestamp.toDate();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+  }
+};
 
 // Write 컴포넌트
 const Write = {
@@ -441,7 +648,9 @@ const routes = [
   { path: '/board', component: Board },
   { path: '/write', component: Write },
   { path: '/post/:id', component: PostDetail },
-  { path: '/mypage', component: MyPage }
+  { path: '/mypage', component: MyPage },
+  { path: '/board/free', component: BoardFree },
+  { path: '/board/notice', component: BoardNotice }
 ];
 
 const router = new VueRouter({ routes });
