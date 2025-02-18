@@ -360,14 +360,26 @@ button:hover {
 
 
 .photo{
-  background:url("../media/1.png");
+  background:url("../media/profile.jpg") no-repeat;
+  background-size:contain;
   width:100%;
-  height:500px;
+  height:40vh;
 
 }
 
 .board-img{
-  background:url("../media/1.png");
+  background:url("../media/board.png")no-repeat;
+  background-size:contain;
   width:100%;
-  height:500px;
+  height:40vh;
+}
+
+.pagination{
+  position:absolute;
+  bottom:30%;
+  left:55%;
+}
+
+.sub-menu{
+  float:right;
 }

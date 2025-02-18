@@ -48,7 +48,10 @@ Vue.component('nav-bar', {
     <nav>
       <ul class="nav">
         <li><router-link to="/" class="lists">홈</router-link></li>
-        <li><router-link to="/board/free" class="lists">게시판</router-link></li>
+        <li><router-link to="/board" class="lists">게시판</router-link>
+          <ul class="sub-menu">
+          </ul>
+        </li>
         <li><router-link to="/write" class="lists">글쓰기</router-link></li>
         <li><router-link to="/mypage" class="lists">마이페이지</router-link></li>
         <li><a href="#" @click="logout">로그아웃</a></li>
@@ -118,12 +121,11 @@ const Home = {
   computed: {
     sortedPosts() {
       return [...this.posts]
-        .filter(post => post.title && post.content)
-        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+        .slice(0,5);
     },
     popularPosts() {
       return [...this.posts]
-        .filter(post => post.title && post.content)
         .sort((a, b) => b.views - a.views)
         .slice(0, 5);
     }
@@ -146,10 +148,9 @@ const Board = {
         </div>
       </section>
       <section class="main-content">
-        <h2>자유게시판</h2>
         <ul>
-          <li v-for="post in freeBoard" :key="post.id" class="post">
-            <router-link :to="'/post/' + post.id">{{ post.title }}</router-link>
+          <li v-for="post in paginatedPosts" :key="post.id" class="post">
+            <router-link :to="'/post/' + post.id">{{ post.category }} - {{ post.title }}</router-link>
             <div class="post-details">
               <div class="post-views">조회수: {{ post.views }}</div>
               <div class="post-likes">👍 {{ post.likes }}</div>
@@ -157,38 +158,50 @@ const Board = {
             </div>
           </li>
         </ul>
-        <h2>공지사항</h2>
-        <ul>
-          <li v-for="post in noticeBoard" :key="post.id" class="post">
-            <router-link :to="'/post/' + post.id">{{ post.title }}</router-link>
-            <div class="post-details">
-              <div class="post-views">조회수: {{ post.views }}</div>
-              <div class="post-likes">👍 {{ post.likes }}</div>
-              <div class="post-dislikes">👎 {{ post.dislikes }}</div>
-            </div>
-          </li>
-        </ul>
+        <div class="pagination">
+          <button @click="prevPage" :disabled="page === 1">이전</button>
+          <span>{{ page }} / {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="page === totalPages">다음</button>
+        </div>
       </section>
     </div>
   </div>
   `,
   data() {
     return {
-      posts: []
+      posts: [],
+      page: 1,
+      pageSize: 8
     };
   },
   async created() {
     this.posts = await getPosts();
   },
   computed: {
-    freeBoard() {
-      return this.posts.filter(post => post.category === '자유게시판');
+    sortedPosts() {
+      return [...this.posts].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
     },
-    noticeBoard() {
-      return this.posts.filter(post => post.category === '공지사항');
+    paginatedPosts() {
+      const start = (this.page - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.sortedPosts.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.sortedPosts.length / this.pageSize);
+    }
+  },
+  methods: {
+    nextPage() {
+      if (this.page < this.totalPages) {
+        this.page++;
+      }
+    },
+    prevPage() {
+      if (this.page > 1) {
+        this.page--;
+      }
     }
   }
-
 };
 
 
@@ -425,7 +438,7 @@ const MyPage = {
 // VueRouter 설정
 const routes = [
   { path: '/', component: Home },
-  { path: '/board/:category', component: Board },
+  { path: '/board', component: Board },
   { path: '/write', component: Write },
   { path: '/post/:id', component: PostDetail },
   { path: '/mypage', component: MyPage }
