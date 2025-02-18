@@ -273,22 +273,11 @@ function changePage() {
 }
 
 /*로그인*/
-function login() {
-    let id = document.querySelector("#userId").value;
-    let pwd = document.querySelector("#pwd").value;
 
-    console.log(id + pwd);
-    if (id == "test1234" && pwd == "test1234") {
-        alert("로그인 성공!");
-        location.href = "intro.html";
-    } else {
-        alert("로그인 실패");
-    }
-}
 
 /*회원가입*/
 function showPopup() {
-    window.open("register.html", "register", "width=500, height =300, left = 100, top = 50")
+    window.open("register.html", "register", "width=500, height =800, left = 100, top = 50")
 }
 
 /*페이지 자동 전환*/

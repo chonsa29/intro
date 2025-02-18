@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
+import { query, where, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBJEslN7lCVRPFBQlLPmoCvHBtHmyAbxr0",
   authDomain: "intro-ce7c2.firebaseapp.com",
@@ -25,10 +25,23 @@ async function getPosts() {
   return posts;
 }
 
+async function getUser() {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  let users = [];
+  querySnapshot.forEach((doc) => {
+    users.push({ id: doc.id, ...doc.data() });
+  });
+  return users;
+}
+
 async function savePost(post) {
   await addDoc(collection(db, "posts"), post);
 }
 
+
+async function saveUser(user) {
+  await addDoc(collection(db, "users"), user);
+}
 // 네비게이션 바
 Vue.component('nav-bar', {
   template: `
@@ -96,7 +109,7 @@ const Home = {
   `,
   data() {
     return {
-      posts: []
+      posts: [],
     };
   },
   async created() {
@@ -129,7 +142,7 @@ const Board = {
         </div>
         <div class="board-details">
           <p>게시판 설명</p>
-          <p>게시판 규칙 등</p>
+          <p>게시판 규칙</p>
         </div>
       </section>
       <section class="main-content">
@@ -201,7 +214,7 @@ const Write = {
     return {
       title: '',
       content: '',
-      category: ''
+      category: '',
     };
   },
   methods: {
@@ -215,6 +228,8 @@ const Write = {
         title: this.title,
         content: this.content,
         category: this.category,
+        likes: 0,
+        dislikes: 0,
         views: 0,
         createdAt: new Date()
       };
@@ -261,7 +276,7 @@ const PostDetail = {
   async created() {
     const posts = await getPosts();
     this.post = posts.find(post => post.id === this.$route.params.id);
-    
+
     if (this.post) {
       this.post.views += 1; // 조회수 증가
       await this.updateViews();
@@ -320,15 +335,15 @@ const MyPage = {
       <div class="profile-info">
         <div class="form-group">
           <label for="name">이름:</label>
-          <input type="text" v-model="name">
-        </div>
-        <div class="form-group">
-          <label for="name">이름:</label>
           <input type="text" v-model="name" :disabled="!isEditing">
         </div>
         <div class="form-group">
+          <label for="name">사용자 이름:</label>
+          <input type="text" v-model="username" :disabled="!isEditing">
+        </div>
+        <div class="form-group">
           <label for="username">아이디:</label>
-          <input type="text" v-model="username" disabled>
+          <input type="text" v-model="userId" disabled>
         </div>
         <div class="form-group">
           <label for="password">비밀번호:</label>
@@ -341,22 +356,27 @@ const MyPage = {
   `,
   data() {
     return {
-      name: '천상욱',
-      username: 'test1234',
-      password: 'asdfasdf',
+      name: '',
+      userId: '',
+      password: '',
+      username: '',
       profileImage: 'media/1.png',
       profileImageFile: null,
       isEditing: false
     };
   },
   async created() {
-    const userDoc = await getDoc(doc(db, "users", "user_id")); // 사용자 ID로 변경하세요
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      this.name = userData.name;
-      this.username = userData.username;
-      this.password = userData.password;
-      this.profileImage = userData.profileImage;
+    this.users = await getUser();
+    const queryParams = new URLSearchParams(window.location.search);
+    this.userId = queryParams.get('userId');
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].userId == this.userId) {
+        this.name = this.users[i].name;
+        this.password = this.users[i].userPwd;
+        this.username = this.users[i].username;
+        this.profileImageFile = this.users[i].profileImageFile;
+        console.log(this.users[i]);
+      }
     }
   },
   methods: {
@@ -372,21 +392,42 @@ const MyPage = {
       }
     },
     async updateProfile() {
-      if (this.profileImageFile) {
-        const storageRef = ref(storage, 'profileImages/' + this.profileImageFile.name);
-        await uploadBytes(storageRef, this.profileImageFile);
-        this.profileImage = await getDownloadURL(storageRef);
+      try {
+        let imageUrl = this.profileImage;
+    
+        if (this.profileImageFile) {
+          const storageRef = ref(storage, `profileImages/${this.userId}.jpg`);
+          await uploadBytes(storageRef, this.profileImageFile);
+          imageUrl = await getDownloadURL(storageRef);
+        }
+    
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("userId", "==", this.userId));  
+        const querySnapshot = await getDocs(q);
+    
+        if (!querySnapshot.empty) {
+          const userDoc = querySnapshot.docs[0].ref; 
+          await updateDoc(userDoc, {
+            name: this.name,
+            username: this.username,
+            userPwd: this.password,
+            profileImage: imageUrl
+          });
+        } else {
+          await setDoc(doc(usersRef), {
+            userId: this.userId, 
+            name: this.name,
+            username: this.username,
+            userPwd: this.password,
+            profileImage: imageUrl
+          });
+        }
+    
+        alert("프로필이 수정되었습니다.");
+      } catch (error) {
+        console.error("프로필 업데이트 오류:", error);
+        alert("프로필 수정 중 오류가 발생했습니다.");
       }
-
-      const userRef = doc(db, "users", "user_id"); // 사용자 ID로 변경하세요
-      await updateDoc(userRef, {
-        name: this.name,
-        username: this.username,
-        password: this.password,
-        profileImage: this.profileImage
-      });
-
-      alert('프로필이 수정되었습니다.');
     }
   }
 };

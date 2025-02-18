@@ -9,11 +9,12 @@
 	<link rel="stylesheet" href="css/home2.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/firebase@10.8.1/firebase-app.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/firebase@10.8.1/firebase-firestore.js"></script>
 
 	<title>자기소개 페이지</title>
 
@@ -164,11 +165,12 @@
 
 		<!--페이지4-->
 		<div id="page4" class="section">
+			<p id="explanation">로그인 하면 게시판 이용이 가능합니다(회원가입 가능)</p>
 			<p id="loginTitle">로그인</p>
 			<div id="login">
 				<div id="container">
-					<div id="id">아이디: <input id="userId" value="test1234"> </div>
-					<div id="password">비밀번호: <input type="password" id="pwd" value="test1234"> </div>
+					<div id="id">아이디: <input id="userId"> </div>
+					<div id="password">비밀번호: <input type="password" id="pwd"> </div>
 				</div>
 				<div id="button2">
 					<button id="loginBtn" onclick="login()">
@@ -183,40 +185,85 @@
 		<!--페이지5-->
 		<div id="page5" class="section">
 			<div id="app">
-			  <div class="songList" v-bind:style="songList">
-				<div class="song-cover" v-bind:style="songCover"></div>
-				<div class="song-info">노래 제목:{{title}}</div>
-				<div class="song-info">가수:{{singer}}</div>
-				<div class="song-info">info:{{inf}}</div>
-			  </div>
-			  <div class="music-container">
-				<div class="album-cover" v-bind:style="albumCover"></div>
-				<div class="audio-control">
-				  <div class="controls">
-					<button @click="prevSong">⏮</button>
-					<button @click="togglePlay">{{ isPlaying ? '⏸' : '▶' }}</button>
-					<button @click="nextSong">⏭</button>
-				  </div>
-				  <div class="progress-container" @click="setProgress">
-					<div class="progress-bar" ref="progressBar"></div>
-				  </div>
-				  <audio ref="audioPlayer" @timeupdate="updateProgress" @ended="nextSong"></audio>
+				<div class="songList" v-bind:style="songList">
+					<div class="song-cover" v-bind:style="songCover"></div>
+					<div class="song-info">노래 제목:{{title}}</div>
+					<div class="song-info">가수:{{singer}}</div>
+					<div class="song-info">info:{{inf}}</div>
 				</div>
-				<div class="playlist">
-				  <span onclick="togglePlaylist()" style="cursor: pointer; font-size:50px; margin-top:2vh;" class="material-symbols-outlined">
-					list
-				  </span>
-				  <ul id="playlist">
-					<li v-for="i in arr" @mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)" @click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}</li>
-				  </ul>
+				<div class="music-container">
+					<div class="album-cover" v-bind:style="albumCover"></div>
+					<div class="audio-control">
+						<div class="controls">
+							<button @click="prevSong">⏮</button>
+							<button @click="togglePlay">{{ isPlaying ? '⏸' : '▶' }}</button>
+							<button @click="nextSong">⏭</button>
+						</div>
+						<div class="progress-container" @click="setProgress">
+							<div class="progress-bar" ref="progressBar"></div>
+						</div>
+						<audio ref="audioPlayer" @timeupdate="updateProgress" @ended="nextSong"></audio>
+					</div>
+					<div class="playlist">
+						<span onclick="togglePlaylist()" style="cursor: pointer; font-size:50px; margin-top:2vh;"
+							class="material-symbols-outlined">
+							list
+						</span>
+						<ul id="playlist">
+							<li v-for="i in arr"
+								@mouseover="info(i.song.title,i.song.singer,i.song.info,i.song.background)"
+								@click="changeSong(i.song.background,i.song.link)" @mouseout="mouseout">{{i.song.title}}
+							</li>
+						</ul>
+					</div>
 				</div>
-			  </div>
 			</div>
-		  </div>
-		  
-		  
+		</div>
 	</div>
 </body>
+	
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBJEslN7lCVRPFBQlLPmoCvHBtHmyAbxr0",
+      authDomain: "intro-ce7c2.firebaseapp.com",
+      projectId: "intro-ce7c2",
+      storageBucket: "intro-ce7c2.firebasestorage.app",
+      messagingSenderId: "52941824344",
+      appId: "1:52941824344:web:917e0834257d6d9d23452d",
+      measurementId: "G-E4ZH77NP5T"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+	
+    async function login() {
+      const userId = document.getElementById('userId').value;
+      const pwd = document.getElementById('pwd').value;
+
+      const querySnapshot = await getDocs(collection(db, "users"));
+      let userFound = false;
+
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        if (userData.userId === userId && userData.userPwd === pwd) {
+          userFound = true;
+        }
+      });
+	
+      if (userFound) {
+        alert('로그인 성공!');
+        window.location.href = "intro.html?userId="+userId;
+      } else {
+        alert('아이디 또는 비밀번호가 잘못되었습니다.');
+      }
+    }
+
+    window.login = login;
+
+  </script>
+  <script type="text/javascript" src="js/home.js"></script>
 
 </html>
-<script type="text/javascript" src="js/home.js"></script>
