@@ -344,7 +344,7 @@ const MyPage = {
       name: '천상욱',
       username: 'test1234',
       password: 'asdfasdf',
-      profileImage: '../media/1.png',
+      profileImage: 'media/1.png',
       profileImageFile: null,
       isEditing: false
     };
