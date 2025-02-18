@@ -330,7 +330,7 @@ const MyPage = {
     <div class="container2">
       <div class="profile-section">
         <img :src="profileImage" alt="Profile Picture" class="profile-image">
-        <input type="file" @change="handleFileUpload">
+        <input type="file" @change="handleFileUpload" @click="alert('돈이 없어서 이미지는 서버에 올릴 수 없습니다...')">
       </div>
       <div class="profile-info">
         <div class="form-group">
@@ -369,6 +369,7 @@ const MyPage = {
     this.users = await getUser();
     const queryParams = new URLSearchParams(window.location.search);
     this.userId = queryParams.get('userId');
+
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].userId == this.userId) {
         this.name = this.users[i].name;
@@ -379,6 +380,7 @@ const MyPage = {
       }
     }
   },
+
   methods: {
     handleFileUpload(event) {
       const file = event.target.files[0];
@@ -387,20 +389,9 @@ const MyPage = {
     },
     toggleEdit() {
       this.isEditing = !this.isEditing;
-      if (!this.isEditing) {
-        this.updateProfile();
-      }
     },
     async updateProfile() {
-      try {
-        let imageUrl = this.profileImage;
-    
-        if (this.profileImageFile) {
-          const storageRef = ref(storage, `profileImages/${this.userId}.jpg`);
-          await uploadBytes(storageRef, this.profileImageFile);
-          imageUrl = await getDownloadURL(storageRef);
-        }
-    
+      try {    
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("userId", "==", this.userId));  
         const querySnapshot = await getDocs(q);
@@ -446,4 +437,3 @@ new Vue({
   el: '#app',
   router
 });
-
